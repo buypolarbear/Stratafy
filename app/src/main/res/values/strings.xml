@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Stratafy</string>
+
+    <string name="hello_blank_fragment">This is the main fragment</string>
+    <string name="settings">SETTINGS</string>
+    <string name="logout">LOGOUT</string>
+    <string name="address">Bankstown, 2200 NSW \n Sydney, Australia</string>
+    <string name="link">www.bankstowngardens.com.au</string>
+    <string name="quickLink"><u>Quick Links:</u></string>
+    <string name="logandissue"><u>LOG AND ISSUE</u></string>
+    <string name="getInTouch"><u>GET IN TOUCH WITH STRATA MANAGER</u></string>
+    <string name="byLaws"><u>VIEW BUILDING BY-LAWS</u></string>
+    <string name="noconnection">No internet connection</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="signin">SIGN IN</string>
+    <string name="signup">SIGN UP</string>
+
+
+</resources>

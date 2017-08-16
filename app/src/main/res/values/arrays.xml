@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="ld_activityScreenTitles">
+        <item>Home / My Building</item>
+        <item>Inbox / Notifications</item>
+        <item>Maintenance / Log Issues</item>
+        <item>Book Services/Amenities</item>
+        <item>Building Directory</item>
+        <item>By-Laws</item>
+        <item>Strata Documents</item>
+        <item>Events &amp; Calendar</item>
+        <item>Community Board</item>
+        <item>Around Me</item>
+        <item>My Profile</item>
+        <item>Concierge</item>
+    </string-array>
+
+    <array name="ld_activityScreenIcons">
+        <item>@drawable/flag</item>
+        <item>@drawable/ic_inbox</item>
+        <item>@drawable/flag</item>
+        <item>@drawable/ic_book</item>
+        <item>@drawable/ic_squre</item>
+        <item>@drawable/ic_note_pen</item>
+        <item>@drawable/ic_folder</item>
+        <item>@drawable/flag</item>
+        <item>@drawable/flag</item>
+        <item>@drawable/flag</item>
+        <item>@drawable/ic_user</item>
+        <item>@drawable/ic_dinner</item>
+    </array>
+
+</resources>
