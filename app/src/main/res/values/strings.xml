@@ -14,6 +14,21 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="signin">SIGN IN</string>
     <string name="signup">SIGN UP</string>
+    <string name="residence">Residential</string>
+    <string name="commercial">Commercial</string>
+    <string name="retail">Retail</string>
+    <string name="signups">Sign Up</string>
+    <string name="propertyId">Enter Property ID</string>
+    <string name="ptype">Select Profile Type</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="approval">Request Approval</string>
+    <string name="term"><![CDATA[TERM & CONDITIONS]]></string>
+    <string name="forgot">FORGOT PASSWORD?</string>
+    <string name="username">Username</string>
+    <string name="submit">Submit</string>
+    <string name="empty">Username or Password is empty</string>
 
 
 </resources>

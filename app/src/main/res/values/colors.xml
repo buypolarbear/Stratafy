@@ -6,6 +6,11 @@
     <!--<color name="colorAccent">#009688</color>-->
     <color name="white">#FFF</color>
     <color name="greyLight">#D3D3D3</color>
+    <color name="silver">#40C0C0C0</color>
     <color name="singin">#0ab2fc</color>
     <color name="signup">#d263c6</color>
+    <color name="red">#ff0000</color>
+    <color name="blue">#0036ff</color>
+    <color name="yellow">#fcff00</color>
+    <color name="black">#000000</color>
 </resources>

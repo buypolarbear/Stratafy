@@ -49,12 +49,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         int id = v.getId();
         switch (id){
             case R.id.llSignin:
-                intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent = new Intent(LoginActivity.this, SigninActivity.class);
                 startActivity(intent);
                 finish();
                 break;
             case R.id.llSignup:
-                intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent = new Intent(LoginActivity.this, SelectRecidencyActivity.class);
                 startActivity(intent);
                 finish();
                 break;

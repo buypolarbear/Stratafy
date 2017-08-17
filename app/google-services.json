@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "345651605771",
+    "firebase_url": "https://strataapp-10e11.firebaseio.com",
+    "project_id": "strataapp-10e11",
+    "storage_bucket": "strataapp-10e11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345651605771:android:0bdefdade544adad",
+        "android_client_info": {
+          "package_name": "com.pixeldart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345651605771-nrukgnkstobfn5ol6ndlu3bec1ubq17t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pixeldart",
+            "certificate_hash": "a89fb37c5ec9f5da54cd5131ffe18e0eb2d52c63"
+          }
+        },
+        {
+          "client_id": "345651605771-qt3jb9tr5k35s3cb7v3tg8nf31qg7hj8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJI0PLs3vyctmn9OofNuCNFJlmn2D9Ksk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345651605771-qt3jb9tr5k35s3cb7v3tg8nf31qg7hj8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "345651605771-knjljl53evt5mj0fe6umgof4am524o00.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.stratafy"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
