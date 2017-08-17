@@ -18,6 +18,7 @@ public class ForgetPassword extends AppCompatActivity implements View.OnClickLis
     private TextView txtSignup, txtEmail, txtSignin;
     private EditText edtEmail;
     private Button btnSubmit;
+
     private Intent intent;
 
     @Override
