@@ -36,6 +36,7 @@ import com.pixeldart.fragment.FragmentLog;
 import com.pixeldart.fragment.FragmentProfile;
 import com.pixeldart.helper.ConnectionDetector;
 import com.pixeldart.helper.Glob;
+import com.pixeldart.helper.SessionManager;
 import com.pixeldart.menu.DrawerAdapter;
 import com.pixeldart.menu.DrawerItem;
 import com.pixeldart.menu.SimpleItem;
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
 
     private ConnectionDetector cd;
     private Boolean isInternetPresent = false;
+    private SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        session = new SessionManager(this);
         cd = new ConnectionDetector(this);
         isInternetPresent = cd.isConnectingToInternet();
         if (!isInternetPresent) {
@@ -242,6 +245,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             case R.id.txtSetting:
                 break;
             case R.id.txtLogout:
+                session.setLogin(false);
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();

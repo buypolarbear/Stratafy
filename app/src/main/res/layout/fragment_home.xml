@@ -1,81 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.MainActivity">
 
     <RelativeLayout
-        android:id="@+id/background"
+        android:id="@+id/llLayerList"
         android:layout_width="match_parent"
         android:layout_height="380dp"
-        android:background="@drawable/background" >
+        android:alpha="0.7"
+        android:background="@drawable/background_home">
 
         <ProgressBar
             android:id="@+id/mProgressbar"
-            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible" />
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
             </LinearLayout>
 
             <LinearLayout
-                android:gravity="center"
-                android:layout_weight="2"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txtStreet"
-                    android:layout_gravity="center"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:textSize="15sp"
-                    android:textColor="@color/white"
                     android:id="@+id/txtAddress"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:textColorLink="@color/white"
-                    android:autoLink="web"
-                    android:gravity="center"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
+                    android:gravity="center"
                     android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <TextView
                     android:id="@+id/txtLink"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:autoLink="web"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textColorLink="@color/white"
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
             </LinearLayout>
 
@@ -84,101 +86,102 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:paddingBottom="20dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/background"
-        android:layout_marginTop="-100dp">
+        android:layout_below="@id/llLayerList"
+        android:layout_marginTop="-100dp"
+        android:orientation="horizontal"
+        android:paddingBottom="20dp">
 
         <android.support.design.widget.FloatingActionButton
-            app:elevation="0dp"
+            android:id="@+id/btnInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
             android:layout_marginTop="55dp"
-            android:layout_marginLeft="25dp"
             android:src="@drawable/ic_info"
-            app:fabSize="normal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            app:elevation="0dp"
+            app:fabSize="normal" />
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
             android:layout_marginTop="42dp"
-            android:layout_marginLeft="25dp"
             android:src="@drawable/ic_upload"
-            app:fabSize="normal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            app:fabSize="normal" />
 
         <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="25dp"
             android:src="@drawable/flag"
-            app:fabSize="normal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            app:fabSize="normal" />
 
         <android.support.design.widget.FloatingActionButton
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="25dp"
-            android:src="@drawable/ic_location"
-            app:fabSize="normal"
+            android:id="@+id/btnMap"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_location"
+            app:fabSize="normal" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_below="@+id/background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/llLayerList"
+        android:orientation="vertical">
 
         <TextView
-            android:textSize="15sp"
+            android:id="@+id/txtQuickLinks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
-            android:id="@+id/txtQuickLinks"
-            android:textColor="@color/greyLight"
             android:text="@string/quickLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/greyLight"
+            android:textSize="15sp" />
 
         <LinearLayout
-            android:orientation="vertical"
-            android:padding="18dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="18dp">
 
             <TextView
-                android:padding="8dp"
                 android:id="@+id/txtLog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
                 android:text="@string/logandissue"
                 android:textColor="@color/colorAccent"
-                android:textSize="15sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textSize="15sp" />
 
             <TextView
-                android:padding="8dp"
                 android:id="@+id/txtGetInTouch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
                 android:text="@string/getInTouch"
                 android:textColor="@color/colorAccent"
-                android:textSize="15sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textSize="15sp" />
 
             <TextView
-                android:padding="8dp"
                 android:id="@+id/txtViewLaw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
                 android:text="@string/byLaws"
                 android:textColor="@color/colorAccent"
-                android:textSize="15sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
     </LinearLayout>
-
-
 
 </RelativeLayout>

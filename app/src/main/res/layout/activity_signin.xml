@@ -6,11 +6,19 @@
     android:background="@color/white"
     tools:context="com.pixeldart.activities.SigninActivity">
 
+
     <RelativeLayout
         android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:background="@drawable/signin_background">
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/mProgressbar"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
 
     </RelativeLayout>

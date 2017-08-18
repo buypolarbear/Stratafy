@@ -29,6 +29,7 @@
     <string name="username">Username</string>
     <string name="submit">Submit</string>
     <string name="empty">Username or Password is empty</string>
+    <string name="ok_button_label">OK</string>
 
 
 </resources>

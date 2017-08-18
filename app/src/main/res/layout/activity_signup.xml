@@ -11,6 +11,13 @@
         android:layout_height="240dp"
         android:background="@drawable/signup_background">
 
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/mProgressbar"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <TextView
             android:id="@+id/txtSignup"
             android:layout_width="wrap_content"
@@ -33,10 +40,10 @@
     </LinearLayout>
 
     <ScrollView
-        android:overScrollMode="never"
-        android:layout_below="@+id/background"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/background"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -78,6 +85,7 @@
                 android:id="@+id/edtPType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusableInTouchMode="false"
                 android:gravity="center"
                 android:imeOptions="actionNext"
                 android:inputType="text"
@@ -150,43 +158,42 @@
                 android:theme="@style/MyEditTextTheme" />
 
             <Button
-                style="?android:attr/borderlessButtonStyle"
                 android:id="@+id/btnApprove"
-                android:text="@string/approval"
-                android:textColor="@color/white"
-                android:background="@color/colorAccent"
-                android:layout_marginTop="8dp"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
-                android:layout_height="60dp" />
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorAccent"
+                android:text="@string/approval"
+                android:textColor="@color/white" />
 
             <LinearLayout
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:text="@string/term"
-                    android:textColor="@color/greyLight"
                     android:id="@+id/txtTerm"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="@string/term"
+                    android:textColor="@color/greyLight" />
 
                 <TextView
                     android:id="@+id/txtSignin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:gravity="end"
                     android:text="@string/signin"
-                    android:textColor="@color/colorAccent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                
+                    android:textColor="@color/colorAccent" />
+
             </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </RelativeLayout>

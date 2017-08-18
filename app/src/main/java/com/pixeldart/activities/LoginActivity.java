@@ -52,11 +52,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 intent = new Intent(LoginActivity.this, SigninActivity.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                 break;
             case R.id.llSignup:
                 intent = new Intent(LoginActivity.this, SelectRecidencyActivity.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                 break;
         }
     }

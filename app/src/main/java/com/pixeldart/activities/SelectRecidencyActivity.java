@@ -47,16 +47,19 @@ public class SelectRecidencyActivity extends AppCompatActivity implements View.O
         switch (id){
             case R.id.txtResidential:
                 intent = new Intent(SelectRecidencyActivity.this, SignupActivity.class);
+                intent.putExtra("type", "Residential");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.txtCommmercial:
                 intent = new Intent(SelectRecidencyActivity.this, SignupActivity.class);
+                intent.putExtra("type", "Commercial");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.txtRetail:
                 intent = new Intent(SelectRecidencyActivity.this, SignupActivity.class);
+                intent.putExtra("type", "Retail");
                 startActivity(intent);
                 finish();
                 break;

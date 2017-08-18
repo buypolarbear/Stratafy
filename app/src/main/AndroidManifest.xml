@@ -58,6 +58,9 @@
         </service>
         <!-- ./Firebase Notifications -->
 
+        <activity
+            android:name=".activities.ThankyouActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

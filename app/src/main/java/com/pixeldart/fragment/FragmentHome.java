@@ -1,13 +1,24 @@
 package com.pixeldart.fragment;
 
-import android.app.ProgressDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ShareCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,38 +28,41 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.pixeldart.R;
 import com.pixeldart.helper.Glob;
 import com.pixeldart.helper.MyApplication;
+import com.pixeldart.service.Config;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Locale;
 
 /**
  * Created by cn on 8/14/2017.
  */
 
-public class FragmentHome extends Fragment{
+public class FragmentHome extends Fragment implements View.OnClickListener {
 
     private static final String EXTRA_TEXT = "text";
 
     private RelativeLayout cutLayout;
     private TextView txtStreet, txtAddress, txtLink, txtQuickLinks, txtLog, txtGetInTouch, txtByLaws;
-    private ProgressDialog mProgressDialog;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
     private ProgressBar mProgressBar;
+    private String property_id, description, address;
+    private FloatingActionButton btnInfo, btnShare, btnMap;
+    private double latitude, longitude;
+
 
     public static FragmentHome instance(String text) {
         FragmentHome fragment = new FragmentHome();
@@ -67,22 +81,25 @@ public class FragmentHome extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        mProgressDialog = new ProgressDialog(getActivity());
+
+        pref = getActivity().getSharedPreferences(Config.SHARED_PREF, 0);
+        editor = pref.edit();
+        property_id = pref.getString("property_id", null);
+
         initialization(view);
-        GetBuilding(getActivity());
+
         return view;
     }
 
     private void initialization(View view) {
-        cutLayout = (RelativeLayout)view.findViewById(R.id.background);
-
-        txtStreet = (TextView)view.findViewById(R.id.txtStreet);
-        txtAddress = (TextView)view.findViewById(R.id.txtAddress);
-        txtLink = (TextView)view.findViewById(R.id.txtLink);
-        txtQuickLinks = (TextView)view.findViewById(R.id.txtQuickLinks);
-        txtLog = (TextView)view.findViewById(R.id.txtLog);
-        txtGetInTouch = (TextView)view.findViewById(R.id.txtGetInTouch);
-        txtByLaws = (TextView)view.findViewById(R.id.txtViewLaw);
+        cutLayout = (RelativeLayout) view.findViewById(R.id.llLayerList);
+        txtStreet = (TextView) view.findViewById(R.id.txtStreet);
+        txtAddress = (TextView) view.findViewById(R.id.txtAddress);
+        txtLink = (TextView) view.findViewById(R.id.txtLink);
+        txtQuickLinks = (TextView) view.findViewById(R.id.txtQuickLinks);
+        txtLog = (TextView) view.findViewById(R.id.txtLog);
+        txtGetInTouch = (TextView) view.findViewById(R.id.txtGetInTouch);
+        txtByLaws = (TextView) view.findViewById(R.id.txtViewLaw);
 
         txtStreet.setTypeface(Glob.avenir(getActivity()));
         txtAddress.setTypeface(Glob.avenir(getActivity()));
@@ -91,57 +108,43 @@ public class FragmentHome extends Fragment{
         txtLog.setTypeface(Glob.avenir(getActivity()));
         txtGetInTouch.setTypeface(Glob.avenir(getActivity()));
         txtByLaws.setTypeface(Glob.avenir(getActivity()));
+        mProgressBar = (ProgressBar) view.findViewById(R.id.mProgressbar);
 
-        mProgressBar = (ProgressBar)view.findViewById(R.id.mProgressbar);
+        btnInfo = (FloatingActionButton)view.findViewById(R.id.btnInfo);
+        btnShare = (FloatingActionButton)view.findViewById(R.id.btnShare);
+        btnMap = (FloatingActionButton)view.findViewById(R.id.btnMap);
+
+        btnInfo.setOnClickListener(this);
+        btnShare.setOnClickListener(this);
+        btnMap.setOnClickListener(this);
+
+        GetBuilding(getActivity());
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        String text = getArguments().getString(EXTRA_TEXT);
-      //  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
-    private void dismissDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
-    }
 
     private void GetBuilding(final Context context) {
 
         String tag_string_req = "req_login";
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, Glob.API_BUILDING_MANAGE, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, Glob.API_BUILDING_MANAGE + property_id + ".json", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Log.e("TAG", "onResponse = \n " + response.toString());
                 try {
                     int status = response.getInt("status");
                     String errorMsg = response.getString("errorMsg");
-                    if(status == 1){
+                    if (status == 1) {
                         JSONObject data = response.getJSONObject("data");
                         int id = data.getInt("id");
                         txtStreet.setText(data.getString("property_name"));
                         txtAddress.setText(data.getString("property_address"));
+                        address = data.getString("property_address");
                         txtLink.setText(data.getString("url"));
-
-                        LayerDrawable ld = (LayerDrawable) getResources().getDrawable(R.drawable.background);
-                        Drawable replace = LoadImageFromWebOperations(data.getString("picture"));
-                        ld.setDrawableByLayerId(R.id.first_img, replace);
-                        if(replace != null){
-                            cutLayout.setBackground(ld);
-                        }
-                    }else {
+                        description = data.getString("description");
+                        latitude = data.getDouble("lat");
+                        longitude = data.getDouble("lng");
+                        drawableFromUrl(data.getString("picture"));
+                    } else {
                         Toast.makeText(getActivity(), errorMsg, Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
@@ -153,19 +156,87 @@ public class FragmentHome extends Fragment{
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("TAG", "response error \n" + error);
-                dismissDialog();
+                mProgressBar.setVisibility(View.GONE);
             }
         });
         MyApplication.getInstance().addToRequestQueue(request, tag_string_req);
     }
 
-    public static Drawable LoadImageFromWebOperations(String url) {
-        try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(is, "drawable");
-            return d;
-        } catch (Exception e) {
-            return null;
+    public void drawableFromUrl(final String url) {
+        final Bitmap[] x = new Bitmap[1];
+        new AsyncTask<Void, Void, Object[]>() {
+
+            @Override
+            protected Object[] doInBackground(Void... params) {
+                HttpURLConnection connection = null;
+                try {
+                    connection = (HttpURLConnection) new URL(url).openConnection();
+                    connection.connect();
+                    InputStream input = connection.getInputStream();
+                    x[0] = BitmapFactory.decodeStream(input);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                return new Object[0];
+            }
+
+            @Override
+            protected void onPostExecute(Object[] objects) {
+                super.onPostExecute(objects);
+
+                LayerDrawable layerDrawable = (LayerDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.background_home, null);
+                layerDrawable.setDrawableByLayerId(R.id.first_img1, new BitmapDrawable(getActivity().getResources(), x[0]));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    layerDrawable.setDrawable(1, new BitmapDrawable(getActivity().getResources(), x[0]));
+
+                }
+                cutLayout.setBackground(layerDrawable);
+            }
+        }.execute();
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id){
+            case R.id.btnInfo:
+                openDialog();
+                break;
+            case R.id.btnShare:
+                ShareAddress();
+                break;
+            case R.id.btnMap:
+                openMap();
+                break;
+
         }
+    }
+
+    public void openDialog() {
+        Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.dialog_info);
+        TextView txtInfo = (TextView) dialog.findViewById(R.id.txtInfo);
+        txtInfo.setTypeface(Glob.avenir(getActivity()));
+        txtInfo.setText(description);
+        dialog.show();
+    }
+
+    private void ShareAddress() {
+        String chooserTitle = "Select Sharing Media";
+        ShareCompat.IntentBuilder.from(getActivity())
+                .setType("text/plain")
+                .setText(address)
+                //.setHtmlText(body) //If you are using HTML in your body text
+                .setChooserTitle(chooserTitle)
+                .startChooser();
+
+    }
+
+    private void openMap(){
+        String uri = String.format(Locale.ENGLISH, "geo:%f,%f", latitude, longitude);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        startActivity(intent);
     }
 }
