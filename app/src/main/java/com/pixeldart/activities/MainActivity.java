@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private Boolean isInternetPresent = false;
     private SessionManager session;
 
+    public static TextView txtToolbarTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -96,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         mToolbar.setNavigationIcon(R.drawable.ic_menu);
 
         mSlideMenu = new SlidingRootNavBuilder(this)
-                .withMenuOpened(true)
+                .withMenuOpened(false)
                 .withSavedState(savedInstanceState)
                 .withMenuLayout(R.layout.menu_left_drawer)
                 .inject();
@@ -139,11 +141,13 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     }
 
     private void initialization(Context context) {
+        txtToolbarTitle = (TextView)findViewById(R.id.txtToolbarTitle);
         txtSetting = (TextView)findViewById(R.id.txtSetting);
         txtLogout = (TextView)findViewById(R.id.txtLogout);
 
         txtSetting.setTypeface(Glob.avenir(context));
         txtLogout.setTypeface(Glob.avenir(context));
+        txtToolbarTitle.setTypeface(Glob.avenir(context));
 
         imgClose = (ImageView)findViewById(R.id.imgClose);
         imgRefresh = (ImageView)findViewById(R.id.imgRefresh);
@@ -191,6 +195,8 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 frag = FragmentHome.instance(screenTitles[position]);
                 break;
             case POS_INBOX:
+                txtToolbarTitle.setVisibility(View.VISIBLE);
+                txtToolbarTitle.setText("Notifications");
                 frag = FragmentInbox.instance(screenTitles[position]);
                 break;
             case POS_LOG:

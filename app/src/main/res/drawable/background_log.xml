@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/colorPrimary"/>
+    <item android:id="@+id/first_img2">
+        <bitmap android:src="@drawable/view3" android:alpha="0.6"/>
+    </item>
+
+    <item android:top="240dp"
+        android:bottom="-240dp"
+        android:left="0dp"
+        android:right="-240dp">
+        <rotate
+            android:fromDegrees="-10"
+            android:pivotX="0%"
+            android:pivotY="100%">
+            <shape
+                android:shape="rectangle">
+                <solid
+                    android:color="@color/white"/>
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

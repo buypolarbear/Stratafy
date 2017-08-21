@@ -33,6 +33,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.pixeldart.R;
+import com.pixeldart.activities.CreateLogActivity;
+import com.pixeldart.activities.MainActivity;
 import com.pixeldart.helper.Glob;
 import com.pixeldart.helper.MyApplication;
 import com.pixeldart.service.Config;
@@ -62,6 +64,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
     private String property_id, description, address;
     private FloatingActionButton btnInfo, btnShare, btnMap;
     private double latitude, longitude;
+    private Intent intent;
 
 
     public static FragmentHome instance(String text) {
@@ -81,7 +84,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
+        MainActivity.txtToolbarTitle.setVisibility(View.GONE);
         pref = getActivity().getSharedPreferences(Config.SHARED_PREF, 0);
         editor = pref.edit();
         property_id = pref.getString("property_id", null);
@@ -117,6 +120,9 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
         btnInfo.setOnClickListener(this);
         btnShare.setOnClickListener(this);
         btnMap.setOnClickListener(this);
+        txtLog.setOnClickListener(this);
+        txtGetInTouch.setOnClickListener(this);
+        txtByLaws.setOnClickListener(this);
 
         GetBuilding(getActivity());
     }
@@ -210,7 +216,21 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
             case R.id.btnMap:
                 openMap();
                 break;
-
+            case R.id.txtLog:
+                intent = new Intent(getActivity(), CreateLogActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                break;
+            case R.id.txtGetInTouch:
+                intent = new Intent(getActivity(), CreateLogActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                break;
+            case R.id.txtViewLaw:
+                intent = new Intent(getActivity(), CreateLogActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                break;
         }
     }
 

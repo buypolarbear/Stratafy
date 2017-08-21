@@ -16,6 +16,11 @@
         <item>Concierge</item>
     </string-array>
 
+    <string-array name="notes">
+        <item>Public</item>
+        <item>Private</item>
+    </string-array>
+
     <array name="ld_activityScreenIcons">
         <item>@drawable/flag</item>
         <item>@drawable/ic_inbox</item>

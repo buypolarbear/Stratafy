@@ -8,6 +8,7 @@
     <string name="link">www.bankstowngardens.com.au</string>
     <string name="quickLink"><u>Quick Links:</u></string>
     <string name="logandissue"><u>LOG AND ISSUE</u></string>
+    <string name="logs"><u>Maintenance / Log Issues</u></string>
     <string name="getInTouch"><u>GET IN TOUCH WITH STRATA MANAGER</u></string>
     <string name="byLaws"><u>VIEW BUILDING BY-LAWS</u></string>
     <string name="noconnection">No internet connection</string>
@@ -30,6 +31,21 @@
     <string name="submit">Submit</string>
     <string name="empty">Username or Password is empty</string>
     <string name="ok_button_label">OK</string>
+    <string name="title">Enter Title</string>
+    <string name="enterDetail">Enter the details here</string>
+    <string name="selectCat">Select Category</string>
+    <string name="notes">Notes</string>
+    <string name="notification">NOTIFICATIONS</string>
+    <string name="inbox">INBOX</string>
+    <string name="strata">STRATA</string>
+    <string name="text1">A place where you can talk directly to your strata manager in real time.</string>
+    <string name="text2">Log building issue here as well as any issues you need to bring to the attention of management</string>
+    <string name="title1">Booking Services \n&amp; Amenities</string>
+    <string name="current">CURRENT BY-LAWS</string>
+    <string name="future">VOTE ON THE FUTURE</string>
+    <string name="summary"><u>SUMMARY</u></string>
+    <string name="text3">STRATA SCHEMES MANAGEMENT REGULATION 2016 - SCHEDULE 3 - Model by-laws for residential strata schemes (clause 37)\nNote: These by-laws do not apply to strata schemes unless they are adopted by the owners corporation for the strata schemes or lodged with the strata plan</string>
+    <string name="strataDoc">Strata Documents</string>
 
 
 </resources>

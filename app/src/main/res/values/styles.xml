@@ -28,4 +28,8 @@
 
     </style>
 
+    <style name="CustomTextStyle2" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">15sp</item>
+    </style>
+
 </resources>
