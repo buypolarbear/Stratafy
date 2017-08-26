@@ -4,7 +4,6 @@
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:pickerui="http://schemas.android.com/apk/res-auto"
     android:animateLayoutChanges="true"
     tools:context=".activities.MainActivity">
 
@@ -48,17 +47,13 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/edtTitle"
+                    <TextView
+                        android:id="@+id/txtTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="#00000000"
-                        android:backgroundTint="@android:color/transparent"
-                        android:hint="@string/title"
                         android:textColor="@color/white"
-                        android:textColorHint="@color/white"
-                        android:textSize="28sp"
+                        android:textSize="26sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -81,15 +76,15 @@
             android:layout_below="@id/llLog"
             android:layout_marginTop="-90dp"
             android:orientation="vertical"
-            android:paddingBottom="20dp">
+            android:paddingBottom="50dp">
 
             <android.support.design.widget.FloatingActionButton
-                android:id="@+id/btnCamera"
+                android:id="@+id/btnPhoto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/ic_camera"
+                android:src="@drawable/ic_photo"
                 app:elevation="0dp"
                 app:fabSize="normal" />
 
@@ -107,19 +102,14 @@
                 android:id="@+id/txtDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/enterDetail"
+
                 android:textColor="@color/colorPrimary" />
 
-            <EditText
-                android:id="@+id/edtDetail"
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:background="@color/silver"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:imeOptions="actionNext"
-                android:inputType="textMultiLine"
-
-                android:textColor="@color/black"
-                android:theme="@style/MyEditTextTheme" />
+                android:layout_height="1dp"></LinearLayout>
 
             <EditText
                 android:textSize="14sp"
@@ -149,34 +139,6 @@
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:padding="18dp"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/btnSubmit"
-                style="?android:attr/borderlessButtonStyle"
-                android:textColor="@color/white"
-                android:background="@color/colorAccent"
-                android:text="@string/submit"
-                android:layout_width="match_parent"
-                android:layout_height="55dp" />
-
-        </RelativeLayout>
-
-        <com.dpizarro.uipicker.library.picker.PickerUI
-            android:id="@+id/picker_ui_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            pickerui:linesCenterColor="#3941ff"
-            pickerui:autoDismiss="true"
-            pickerui:entries="@array/notes"
-            pickerui:textCenterColor="#000000"
-            pickerui:textNoCenterColor="#737373"
-            />
-
     </RelativeLayout>
 
     <RelativeLayout
@@ -197,16 +159,23 @@
             app:fabSize="normal" />
 
         <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/btnClose"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             card_view:cardBackgroundColor="@android:color/white">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                 />
 
             <ImageView
                 android:id="@+id/img"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:adjustViewBounds="true" />
+                android:layout_height="match_parent" />
 
         </android.support.v7.widget.CardView>
 

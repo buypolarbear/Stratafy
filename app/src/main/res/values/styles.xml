@@ -32,4 +32,9 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name="MyMaterialThemeFull" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@color/colorPrimaryDark</item>
+    </style>
+
 </resources>

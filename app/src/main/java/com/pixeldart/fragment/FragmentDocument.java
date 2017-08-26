@@ -19,12 +19,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.pixeldart.R;
 import com.pixeldart.activities.MainActivity;
-import com.pixeldart.adapter.AdapterDocument;
-import com.pixeldart.adapter.AdapterLaws;
+import com.pixeldart.adapter.MySection;
 import com.pixeldart.helper.Glob;
 import com.pixeldart.helper.MyApplication;
-import com.pixeldart.model.Document;
-import com.pixeldart.model.Laws;
+import com.pixeldart.model.DocumentChild;
 import com.pixeldart.service.Config;
 
 import org.json.JSONArray;
@@ -35,6 +33,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
+
 /**
  * Created by cn on 8/14/2017.
  */
@@ -44,14 +44,15 @@ public class FragmentDocument extends Fragment {
     private static final String EXTRA_TEXT = "text";
     private RecyclerView recyclerDocumet;
     private RecyclerView.LayoutManager mLayoutManager;
-    private AdapterDocument adapterDocument;
-    private List<Document> mDocumentList = new ArrayList<>();
+    private SectionedRecyclerViewAdapter adapterDocument;
+    private List<DocumentChild> mDocumentFiles;
     private ProgressBar mProgressBar;
 
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
     private String property_id;
     private int uid;
+    private String key;
 
     public static FragmentDocument instance(String text) {
         FragmentDocument fragment = new FragmentDocument();
@@ -83,13 +84,12 @@ public class FragmentDocument extends Fragment {
         property_id = pref.getString("property_id", null);
         uid = pref.getInt("uid", 0);
 
-
+        adapterDocument = new SectionedRecyclerViewAdapter();
         mProgressBar = (ProgressBar) view.findViewById(R.id.mProgressbar);
         recyclerDocumet = (RecyclerView)view.findViewById(R.id.recycleDocument);
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerDocumet.setLayoutManager(mLayoutManager);
-        adapterDocument = new AdapterDocument(getActivity(), mDocumentList);
-        recyclerDocumet.setAdapter(adapterDocument);
+
 
         getLaws();
     }
@@ -97,7 +97,6 @@ public class FragmentDocument extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         String text = getArguments().getString(EXTRA_TEXT);
-       // Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
     }
 
     private void getLaws() {
@@ -115,19 +114,8 @@ public class FragmentDocument extends Fragment {
                     final String errorMsg = jObj.getString("errorMsg");
                     if (status != 0) {
                         mProgressBar.setVisibility(View.GONE);
-
                         JSONObject data = jObj.getJSONObject("data");
                         parseJson(data);
-                       /* JSONArray laws = data.getJSONObject("by_law").getJSONArray("laws");
-                        for(int i= 0; i < laws.length(); i++){
-                            JSONObject obj = laws.getJSONObject(i);
-                            Laws laws1 = new Laws();
-                            laws1.setLaw_name(obj.getString("title"));
-                            laws1.setLaw_text(obj.getString("description"));
-                            mLawsList.add(laws1);
-                        }
-                        adapterLaws.notifyDataSetChanged();*/
-
                     } else {
                         mProgressBar.setVisibility(View.GONE);
                         Toast.makeText(getActivity(), errorMsg, Toast.LENGTH_LONG).show();
@@ -158,31 +146,35 @@ public class FragmentDocument extends Fragment {
     }
 
     private void parseJson(JSONObject data) {
-
         if (data != null) {
             Iterator<String> it = data.keys();
             while (it.hasNext()) {
-                String key = it.next();
-                Log.d("Key:", key);
-
+                key = it.next();
+                mDocumentFiles = new ArrayList<DocumentChild>();
                 try {
                     if (data.get(key) instanceof JSONArray) {
                         JSONArray arry = data.getJSONArray(key);
                         int size = arry.length();
                         for (int i = 0; i < size; i++) {
-                            longLog(arry.getJSONObject(i).toString(), "JsonObject");
+                            DocumentChild files = new DocumentChild();
+                            JSONObject obj = arry.getJSONObject(i);
+                            files.setFile(obj.getString("file"));
+                            files.setDescription(obj.getString("description"));
+                            files.setCategoryName(obj.getString("categoryname"));
+                            mDocumentFiles.add(files);
                         }
+                        adapterDocument.addSection(new MySection(getActivity(), key, mDocumentFiles));
                     } else if (data.get(key) instanceof JSONObject) {
-                      //  parseJson(data.getJSONObject(key));
+
                     } else {
                         System.out.println("" + key + " : " + data.optString(key));
                     }
                 } catch (Throwable e) {
                     System.out.println("" + key + " : " + data.optString(key));
                     e.printStackTrace();
-
                 }
             }
         }
+        recyclerDocumet.setAdapter(adapterDocument);
     }
 }

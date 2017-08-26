@@ -7,77 +7,184 @@
     tools:context=".activities.MainActivity">
 
     <RelativeLayout
-        android:id="@+id/llLayerList"
+        android:id="@+id/root1"
         android:layout_width="match_parent"
-        android:layout_height="380dp"
-        android:alpha="0.7"
-        android:background="@drawable/background_home">
+        android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/mProgressbar"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/llLayerList"
+            android:layout_width="match_parent"
+            android:layout_height="380dp"
+            android:alpha="0.7"
+            android:background="@drawable/background_home">
+
+            <ProgressBar
+                android:id="@+id/mProgressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtStreet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txtLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:autoLink="web"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textColorLink="@color/white"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="visible" />
+            android:layout_below="@id/llLayerList"
+            android:layout_marginTop="-100dp"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="55dp"
+                android:src="@drawable/ic_info"
+                app:elevation="0dp"
+                app:fabSize="normal" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="42dp"
+                android:src="@drawable/ic_upload"
+                app:fabSize="normal" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnGallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/ic_photo"
+                app:fabSize="normal" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnMap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/ic_location"
+                app:fabSize="normal" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/llLayerList"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/txtQuickLinks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:text="@string/quickLink"
+                android:textColor="@color/greyLight"
+                android:textSize="15sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="18dp">
 
                 <TextView
-                    android:id="@+id/txtStreet"
+                    android:id="@+id/txtLog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtAddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:textColor="@color/white"
+                    android:padding="8dp"
+                    android:text="@string/logandissue"
+                    android:textColor="@color/colorAccent"
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/txtLink"
+                    android:id="@+id/txtGetInTouch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:autoLink="web"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textColorLink="@color/white"
+                    android:padding="8dp"
+                    android:text="@string/getInTouch"
+                    android:textColor="@color/colorAccent"
                     android:textSize="15sp" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txtViewLaw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/byLaws"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -85,103 +192,15 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/root2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/llLayerList"
-        android:layout_marginTop="-100dp"
-        android:orientation="horizontal"
-        android:paddingBottom="20dp">
+        android:layout_height="match_parent">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btnInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="55dp"
-            android:src="@drawable/ic_info"
-            app:elevation="0dp"
-            app:fabSize="normal" />
+        <include
+            layout="@layout/card_gallery" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btnShare"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="42dp"
-            android:src="@drawable/ic_upload"
-            app:fabSize="normal" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/flag"
-            app:fabSize="normal" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btnMap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/ic_location"
-            app:fabSize="normal" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/llLayerList"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/txtQuickLinks"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:text="@string/quickLink"
-            android:textColor="@color/greyLight"
-            android:textSize="15sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="18dp">
-
-            <TextView
-                android:id="@+id/txtLog"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="@string/logandissue"
-                android:textColor="@color/colorAccent"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/txtGetInTouch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="@string/getInTouch"
-                android:textColor="@color/colorAccent"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/txtViewLaw"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="@string/byLaws"
-                android:textColor="@color/colorAccent"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/colorPrimary"/>
     <item>
-        <bitmap android:id="@+id/first_img1" android:src="@drawable/home_background" android:alpha="0.1"/>
+        <bitmap android:id="@+id/first_img1" android:src="@drawable/home_background" android:alpha="0.2"/>
     </item>
 
     <item android:top="380dp"

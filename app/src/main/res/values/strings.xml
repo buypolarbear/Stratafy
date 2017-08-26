@@ -46,6 +46,9 @@
     <string name="summary"><u>SUMMARY</u></string>
     <string name="text3">STRATA SCHEMES MANAGEMENT REGULATION 2016 - SCHEDULE 3 - Model by-laws for residential strata schemes (clause 37)\nNote: These by-laws do not apply to strata schemes unless they are adopted by the owners corporation for the strata schemes or lodged with the strata plan</string>
     <string name="strataDoc">Strata Documents</string>
+    <string name="mylogs">MYLOGS</string>
+    <string name="plogs">PUBLICLOGS</string>
+    <string name="archived">ARCHIVED</string>
 
 
 </resources>

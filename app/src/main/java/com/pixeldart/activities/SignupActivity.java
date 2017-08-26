@@ -223,7 +223,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             edtPID.setError("Property ID is empty");
             return false;
         }
-        if (edtPType.getText().toString().trim().isEmpty()) {
+        else if (edtPType.getText().toString().trim().isEmpty()) {
             edtPType.setError("Profile Type is empty");
             return false;
         }

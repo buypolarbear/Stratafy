@@ -46,7 +46,7 @@
         android:orientation="vertical">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btnCamera"
+            android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-
+                android:id="@+id/llFirst"
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
@@ -80,7 +80,6 @@
                 <TextView
                     android:id="@+id/txtNoMyLog"
                     android:layout_gravity="center"
-                    android:text="128"
                     android:textSize="24sp"
                     android:textColor="@color/colorPrimary"
                     android:layout_width="wrap_content"
@@ -104,6 +103,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llSecond"
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
@@ -112,7 +112,6 @@
                 <TextView
                     android:id="@+id/txtNoPLog"
                     android:layout_gravity="center"
-                    android:text="48"
                     android:textSize="24sp"
                     android:textColor="@color/colorPrimary"
                     android:layout_width="wrap_content"
@@ -136,6 +135,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llThird"
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
@@ -144,7 +144,6 @@
                 <TextView
                     android:id="@+id/txtNoArchived"
                     android:layout_gravity="center"
-                    android:text="24"
                     android:textSize="24sp"
                     android:textColor="@color/colorPrimary"
                     android:layout_width="wrap_content"
@@ -166,6 +165,26 @@
                     android:layout_height="1dp"></LinearLayout>
 
             </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:background="@color/silver"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v4.view.ViewPager>
+
         </LinearLayout>
 
 

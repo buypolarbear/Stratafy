@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
 import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener, View.OnClickListener {
@@ -68,12 +70,14 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private Toolbar mToolbar;
     private TextView txtSetting, txtLogout;
     private ImageView imgClose, imgRefresh;
+    private LinearLayout llContainer;
 
     private ConnectionDetector cd;
     private Boolean isInternetPresent = false;
     private SessionManager session;
 
     public static TextView txtToolbarTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         initialization(this);
         listener(this);
 
+
     }
 
     private void listener(MainActivity context) {
@@ -141,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     }
 
     private void initialization(Context context) {
+
         txtToolbarTitle = (TextView)findViewById(R.id.txtToolbarTitle);
         txtSetting = (TextView)findViewById(R.id.txtSetting);
         txtLogout = (TextView)findViewById(R.id.txtLogout);
@@ -154,11 +160,15 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     }
 
     private void showFragment(Fragment fragment) {
+        llContainer = (LinearLayout)findViewById(R.id.container);
         if (fragment != null) {
+            llContainer.removeAllViewsInLayout();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container, fragment);
             fragmentTransaction.commit();
+            fragmentManager.popBackStack();
+
         }
     }
 
@@ -264,5 +274,4 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         mSlideMenu.openMenu();
         return true;
     }
-
 }
