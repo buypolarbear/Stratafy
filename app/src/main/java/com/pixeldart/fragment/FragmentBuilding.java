@@ -4,8 +4,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +22,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.pixeldart.R;
 import com.pixeldart.activities.MainActivity;
 import com.pixeldart.adapter.AdapterCategory;
+import com.pixeldart.adapter.AdapterContact;
 import com.pixeldart.helper.Glob;
 import com.pixeldart.helper.MyApplication;
 import com.pixeldart.model.Category;
+import com.pixeldart.model.Contact;
 import com.pixeldart.service.Config;
 
 import org.json.JSONArray;
@@ -32,6 +36,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
+
 
 /**
  * Created by cn on 8/14/2017.
@@ -40,9 +46,11 @@ import java.util.List;
 public class FragmentBuilding extends Fragment {
 
     private RecyclerView recycleCategory, recycleDocument;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.LayoutManager mLayoutManager, mLayoutManager2;
     private AdapterCategory adapter;
+    private SectionedRecyclerViewAdapter adapterDocument;
     private List<Category> mList = new ArrayList<>();
+    private List<Contact> mContactList = new ArrayList<>();
     private ProgressBar mProgressBar;
 
     private SharedPreferences pref;
@@ -88,14 +96,20 @@ public class FragmentBuilding extends Fragment {
     }
 
     private void initialization(View view) {
+
+        adapterDocument = new SectionedRecyclerViewAdapter();
         mProgressBar = (ProgressBar) view.findViewById(R.id.mProgressbar);
 
         recycleCategory = (RecyclerView) view.findViewById(R.id.recycleCategory);
+        recycleDocument = (RecyclerView) view.findViewById(R.id.recycleDocument);
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        mLayoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recycleCategory.setLayoutManager(mLayoutManager);
+        recycleDocument.setLayoutManager(new GridLayoutManager(getActivity(), 3));
 
         adapter = new AdapterCategory(getActivity(), mList);
         recycleCategory.setAdapter(adapter);
+        recycleDocument.setAdapter(adapterDocument);
     }
 
     public static void longLog(String str, String log) {
@@ -134,17 +148,33 @@ public class FragmentBuilding extends Fragment {
                         }
 
                         JSONArray data = jObj.getJSONArray("data");
-                       /* if(data != null){
+                        if(data != null){
                             for (int i = 0; i < data.length(); i++){
                                 JSONObject r = data.getJSONObject(i);
-                                Category notifications = new Category();
-                                notifications.setCat(r.getString("message"));
-                                mList.add(notifications);
+                                Contact contact = new Contact();
+                                contact.setFname(r.getString("first_name"));
+                                contact.setLname(r.getString("last_name"));
+                                contact.setEmail(r.getString("email"));
+                                contact.setCno(r.getString("contact_num"));
+                                contact.setPtype(r.getString("profile_type"));
+                                contact.setPosition(r.getString("position"));
+                                contact.setStatus(r.getString("status"));
+                                mContactList.add(contact);
                             }
-                        }*/
+                        }
+
+                        for(char alphabet = 'A'; alphabet <= 'Z';alphabet++) {
+                            List<Contact> contacts = getContactsWithLetter(alphabet);
+
+                            if (contacts.size() > 0) {
+                                adapterDocument.addSection(new AdapterContact(getActivity(), String.valueOf(alphabet), contacts));
+
+                            }
+                        }
 
                         mProgressBar.setVisibility(View.GONE);
                         adapter.notifyDataSetChanged();
+                        adapterDocument.notifyDataSetChanged();
                     } else {
                         mProgressBar.setVisibility(View.GONE);
                         Toast.makeText(getActivity(), errorMsg, Toast.LENGTH_LONG).show();
@@ -164,6 +194,17 @@ public class FragmentBuilding extends Fragment {
             }
         });
         MyApplication.getInstance().addToRequestQueue(strReq, tag_string_req);
+    }
+
+    private List<Contact> getContactsWithLetter(char letter) {
+        List<Contact> contacts = new ArrayList<>();
+
+        for (Contact contact : mContactList) {
+            if (contact.getFname().toUpperCase().charAt(0) == letter) {
+                contacts.add(contact);
+            }
+        }
+        return contacts;
     }
 
 }

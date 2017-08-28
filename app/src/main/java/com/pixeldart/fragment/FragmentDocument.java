@@ -94,11 +94,6 @@ public class FragmentDocument extends Fragment {
         getLaws();
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        String text = getArguments().getString(EXTRA_TEXT);
-    }
-
     private void getLaws() {
         mProgressBar.setVisibility(View.VISIBLE);
         String tag_string_req = "req_login";
