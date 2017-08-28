@@ -12,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
         <RelativeLayout
             android:id="@+id/llLog"
             android:layout_width="match_parent"
@@ -90,54 +92,100 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <ScrollView
             android:layout_below="@id/llLog"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:padding="18dp">
-
-            <TextView
-                android:id="@+id/txtDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:textColor="@color/colorPrimary" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_marginTop="5dp"
-                android:background="@color/silver"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"></LinearLayout>
+                android:layout_height="match_parent"
 
-            <EditText
-                android:textSize="14sp"
-                android:id="@+id/edtCategory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:focusableInTouchMode="false"
-                android:gravity="center"
-                android:hint="@string/selectCat"
-                android:textColor="@color/black"
-                android:textColorHint="@color/colorPrimary"
-                android:theme="@style/MyEditTextTheme" />
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="18dp">
 
-            <EditText
-                android:textSize="14sp"
-                android:id="@+id/edtNotes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:focusableInTouchMode="false"
-                android:gravity="center"
-                android:hint="@string/notes"
-                android:textColor="@color/colorPrimary"
-                android:textColorHint="@color/colorPrimary"
-                android:theme="@style/MyEditTextTheme" />
+                <TextView
+                    android:id="@+id/txtDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-        </LinearLayout>
+                    android:textColor="@color/colorPrimary" />
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:background="@color/silver"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"></LinearLayout>
+
+                <EditText
+                    android:textSize="14sp"
+                    android:id="@+id/edtCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center"
+                    android:hint="@string/selectCat"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/colorPrimary"
+                    android:theme="@style/MyEditTextTheme" />
+
+                <EditText
+                    android:textSize="14sp"
+                    android:id="@+id/edtNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center"
+                    android:hint="@string/notes"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/colorPrimary"
+                    android:theme="@style/MyEditTextTheme" />
+
+                <EditText
+                    android:textSize="14sp"
+                    android:id="@+id/edtPrivate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center"
+                    android:hint="@string/privats"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/colorPrimary"
+                    android:theme="@style/MyEditTextTheme" />
+
+                <Button
+                    android:layout_marginTop="5dp"
+                    android:text="Delete"
+                    android:background="@color/colorAccent"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:layout_marginTop="5dp"
+                    android:text="Reject"
+                    android:background="@color/colorAccent"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:layout_marginTop="5dp"
+                    android:text="Delete"
+                    android:background="@color/colorAccent"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
 
     </RelativeLayout>
 

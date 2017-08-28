@@ -1,6 +1,7 @@
 package com.pixeldart.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,12 +17,27 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.pixeldart.R;
 import com.pixeldart.activities.MainActivity;
 import com.pixeldart.helper.Glob;
+import com.pixeldart.helper.MyApplication;
+import com.pixeldart.model.Archived;
+import com.pixeldart.model.MyLogs;
+import com.pixeldart.model.Notifications;
+import com.pixeldart.model.PublicLogs;
+import com.pixeldart.service.Config;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +52,16 @@ public class FragmentInbox extends Fragment {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private TextView txt1;
+    private ProgressBar mProgressBar;
+
+    private List<Notifications> mList = new ArrayList<>();
+
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+
+
+    private String property_id;
+    private int uid;
 
     public static FragmentInbox instance(String text) {
         FragmentInbox fragment = new FragmentInbox();
@@ -55,11 +81,17 @@ public class FragmentInbox extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inbox, container, false);
 
+        pref = getActivity().getSharedPreferences(Config.SHARED_PREF, 0);
+        editor = pref.edit();
+        property_id = pref.getString("property_id", null);
+        uid = pref.getInt("uid", 0);
+
         initialization(view);
         return view;
     }
 
     private void initialization(View view) {
+        mProgressBar = (ProgressBar) view.findViewById(R.id.mProgressbar);
         txt1 = (TextView)view.findViewById(R.id.txt1);
         txt1.setTypeface(Glob.avenir(getActivity()));
 
@@ -68,7 +100,6 @@ public class FragmentInbox extends Fragment {
 
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-        changeTabsFont();
         OnPageChange();
 
     }
@@ -99,12 +130,6 @@ public class FragmentInbox extends Fragment {
         });
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        String text = getArguments().getString(EXTRA_TEXT);
-      //  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
-    }
-
     private void changeTabsFont() {
         ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
         int tabsCount = vg.getChildCount();
@@ -126,13 +151,7 @@ public class FragmentInbox extends Fragment {
 
 
     private void setupViewPager(ViewPager viewPager) {
-                ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
-                adapter.addFragment(FragmentNotification.instance(""),
-                        getResources().getString(R.string.notification));
-                adapter.addFragment(FragmentInboxList.instance(""),
-                        getResources().getString(R.string.inbox));
-                adapter.addFragment(FragmentChat.instance(""), getResources().getString(R.string.strata));
-                viewPager.setAdapter(adapter);
+        getNotification(viewPager);
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -162,6 +181,73 @@ public class FragmentInbox extends Fragment {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+    }
+
+    public static void longLog(String str, String log) {
+        if (str.length() > 4000) {
+            Log.d(log, str.substring(0, 4000));
+            longLog(str.substring(4000), log);
+        } else
+            Log.d(log, str);
+    }
+
+    private void getNotification(final ViewPager pager) {
+        mProgressBar.setVisibility(View.VISIBLE);
+        mList.clear();
+        String tag_string_req = "req_login";
+        String url = Glob.API_GET_NOTIFICATION +uid + "/" + property_id + ".json";
+        Log.d("URl", url);
+        StringRequest strReq = new StringRequest(Request.Method.GET,
+                url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                longLog(response, "Low_response");
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    int status = jObj.getInt("status");
+                    final String errorMsg = jObj.getString("errorMsg");
+                    if (status != 0) {
+                        JSONArray data = jObj.getJSONArray("data");
+
+                        if(data != null){
+                            for (int i = 0; i < data.length(); i++){
+                                JSONObject r = data.getJSONObject(i);
+                                Notifications notifications = new Notifications();
+                                notifications.setMessage(r.getString("message"));
+                                mList.add(notifications);
+                            }
+                        }
+
+                        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
+                        adapter.addFragment(FragmentNotification.instance(mList),
+                                getResources().getString(R.string.notification));
+                        adapter.addFragment(FragmentInboxList.instance(""),
+                                getResources().getString(R.string.inbox));
+                        adapter.addFragment(FragmentChat.instance(""), getResources().getString(R.string.strata));
+                        pager.setAdapter(adapter);
+                        pager.getAdapter().notifyDataSetChanged();
+
+                        changeTabsFont();
+                        mProgressBar.setVisibility(View.GONE);
+                    } else {
+                        mProgressBar.setVisibility(View.GONE);
+                        Toast.makeText(getActivity(), errorMsg, Toast.LENGTH_LONG).show();
+                    }
+                } catch (final JSONException e) {
+                    e.printStackTrace();
+                    mProgressBar.setVisibility(View.GONE);
+                    Toast.makeText(getActivity(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(final VolleyError error) {
+                Log.e("TAG", "Law_error: " + error.getMessage());
+                mProgressBar.setVisibility(View.GONE);
+                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        MyApplication.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 }
 

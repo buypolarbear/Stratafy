@@ -19,6 +19,8 @@ public class Glob {
     public static final String API_GET_DOCUMENT = MAIN_DOMAIN + "documents/index/";
     public static final String API_GET_LOG = MAIN_DOMAIN + "logs/index/";
     public static final String API_POST_LOG = MAIN_DOMAIN + "logs/add_log/";
+    public static final String API_GET_NOTIFICATION = MAIN_DOMAIN + "notifications/notificationlist/";
+    public static final String API_GET_DIRECTORY = MAIN_DOMAIN + "buildings/directory/";
 
     public static Typeface avenir(Context context){
         return Typeface.createFromAsset(context.getAssets(), "font/Avenir_45_Book.ttf");

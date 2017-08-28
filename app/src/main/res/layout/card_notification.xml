@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:padding="16dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:src="@drawable/ic_exclamation"
+            android:layout_width="32dp"
+            android:layout_height="32dp" />
+
+        <TextView
+            android:id="@+id/txtText"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:text="Message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:background="@color/silver"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+
+    </LinearLayout>
+
+</LinearLayout>

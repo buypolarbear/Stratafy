@@ -49,6 +49,7 @@
     <string name="mylogs">MYLOGS</string>
     <string name="plogs">PUBLICLOGS</string>
     <string name="archived">ARCHIVED</string>
+    <string name="privats">Private</string>
 
 
 </resources>
