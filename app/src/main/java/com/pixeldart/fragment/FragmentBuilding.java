@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,7 +22,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.pixeldart.R;
 import com.pixeldart.activities.MainActivity;
-import com.pixeldart.adapter.AdapterDirectory;
 import com.pixeldart.adapter.SnapAdapter;
 import com.pixeldart.helper.Glob;
 import com.pixeldart.helper.MyApplication;
@@ -61,6 +59,8 @@ public class FragmentBuilding extends Fragment {
     private String key = "1";
     List<Contact> contacts = new ArrayList<>();
 
+    public static LinearLayout llConnect;
+
     private static final String EXTRA_TEXT = "text";
 
     public static FragmentBuilding instance(String text) {
@@ -97,6 +97,8 @@ public class FragmentBuilding extends Fragment {
     }
 
     private void initialization(View view) {
+
+        llConnect = (LinearLayout)view.findViewById(R.id.llConnect);
 
         snapAdapter = new SnapAdapter(getActivity());
         mProgressBar = (ProgressBar) view.findViewById(R.id.mProgressbar);

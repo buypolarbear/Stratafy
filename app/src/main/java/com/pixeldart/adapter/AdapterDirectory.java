@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.pixeldart.R;
+import com.pixeldart.fragment.FragmentBuilding;
 import com.pixeldart.helper.Glob;
 import com.pixeldart.model.Contact;
 
@@ -55,7 +56,7 @@ public class AdapterDirectory extends RecyclerView.Adapter<AdapterDirectory.MyVi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FragmentBuilding.llConnect.setVisibility(View.VISIBLE);
             }
         });
     }
