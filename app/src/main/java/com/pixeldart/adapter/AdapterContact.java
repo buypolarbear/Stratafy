@@ -3,6 +3,7 @@ package com.pixeldart.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class AdapterContact extends StatelessSection {
     String letter;
     List<Contact> mList;
     Context context;
+
 
     public AdapterContact(Context context, String date, List<Contact> mList) {
         super(new SectionParameters.Builder(R.layout.section_item_contact)

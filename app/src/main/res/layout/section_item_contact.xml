@@ -5,15 +5,16 @@
     android:orientation="vertical">
 
     <TextView
+        android:gravity="center"
         android:id="@+id/txtNameLetter"
         android:layout_margin="8dp"
         android:textColor="@color/white"
-        android:padding="24dp"
-        android:textSize="28sp"
+        android:padding="20dp"
+        android:textSize="24sp"
         android:text="AN"
         android:background="@drawable/background_solid_random"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
 
     <TextView
         android:id="@+id/txtName"

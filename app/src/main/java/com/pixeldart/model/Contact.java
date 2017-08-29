@@ -5,6 +5,7 @@ package com.pixeldart.model;
  */
 
 public class Contact {
+
     String id, fname, lname, email, cno, ptype, status, position, catId;
 
     public String getId() {

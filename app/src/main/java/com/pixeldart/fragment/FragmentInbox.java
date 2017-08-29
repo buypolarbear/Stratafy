@@ -225,7 +225,6 @@ public class FragmentInbox extends Fragment {
                                 getResources().getString(R.string.inbox));
                         adapter.addFragment(FragmentChat.instance(""), getResources().getString(R.string.strata));
                         pager.setAdapter(adapter);
-                        pager.getAdapter().notifyDataSetChanged();
 
                         changeTabsFont();
                         mProgressBar.setVisibility(View.GONE);
