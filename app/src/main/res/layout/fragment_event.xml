@@ -1,6 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MainActivity">
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/root1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/llLayerList"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:background="@drawable/background_event">
+
+          <!--  <ProgressBar
+                android:id="@+id/mProgressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="visible" />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3.5"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:drawableRight="@drawable/ic_arrow_down"
+                        android:id="@+id/txtDates"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/compactcalendar_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        app:compactCalendarTargetHeight="250dp"
+                        app:compactCalendarTextSize="12sp"
+                        app:compactCalendarBackgroundColor="#00000000"
+                        app:compactCalendarTextColor="#fff"
+                        app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
+                        app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
+                        app:compactCalendarMultiEventIndicatorColor="#fff"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llLayerList"
+            android:layout_marginTop="-90dp"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:id="@+id/linearLayout">
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:id="@+id/btnAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add"
+                app:fabSize="normal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_below="@+id/linearLayout"
+            android:layout_alignParentStart="true">
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/root2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            layout="@layout/frame_create" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

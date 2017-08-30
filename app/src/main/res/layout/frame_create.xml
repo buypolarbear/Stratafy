@@ -1,0 +1,183 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    tools:context=".activities.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/llRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/llLog"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:alpha="0.7"
+            android:background="@drawable/background_log">
+
+            <ProgressBar
+                android:id="@+id/mProgressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/edtTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="#00000000"
+                        android:backgroundTint="@android:color/transparent"
+                        android:hint="@string/title"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llLog"
+            android:layout_marginTop="-90dp"
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
+
+            <android.support.design.widget.FloatingActionButton
+                android:visibility="gone"
+                android:id="@+id/btnCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/ic_camera"
+                app:elevation="0dp"
+                app:fabSize="normal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/llLog"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/txtDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/enterDetail"
+                android:textColor="@color/colorPrimary" />
+
+            <EditText
+                android:id="@+id/edtDetail"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:imeOptions="actionNext"
+                android:inputType="textMultiLine"
+
+                android:textColor="@color/black"
+                android:theme="@style/MyEditTextTheme" />
+
+            <EditText
+                android:textSize="14sp"
+                android:id="@+id/edtDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:hint="@string/selectDate"
+                android:textColor="@color/black"
+                android:textColorHint="@color/colorPrimary"
+                android:theme="@style/MyEditTextTheme" />
+
+            <EditText
+                android:textSize="14sp"
+                android:id="@+id/edtSTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:hint="@string/Stime"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorPrimary"
+                android:theme="@style/MyEditTextTheme" />
+
+            <EditText
+                android:textSize="14sp"
+                android:id="@+id/edtETime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:hint="@string/Etime"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorPrimary"
+                android:theme="@style/MyEditTextTheme" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:padding="18dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnSubmit"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="@color/white"
+                android:background="@color/colorAccent"
+                android:text="@string/submit"
+                android:layout_width="match_parent"
+                android:layout_height="55dp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -50,6 +50,9 @@
     <string name="plogs">PUBLICLOGS</string>
     <string name="archived">ARCHIVED</string>
     <string name="privats">Private</string>
+    <string name="selectDate">Event Date</string>
+    <string name="Etime">Event End Time</string>
+    <string name="Stime">Event Start Time</string>
 
 
 </resources>
