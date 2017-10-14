@@ -1,29 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pixeldart">
+    package="com.stratafy">
+
+    <permission
+        android:name="com.stratafy.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="com.stratafy.permission.MAPS_RECEIVE" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
     <application
-        android:name=".helper.MyApplication"
+        android:name="com.stratafy.helper.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.pixeldart.provider"
+            android:authorities="com.stratafy.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -31,18 +44,22 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC9cr4GeJDtcdByMmoik9uDByQD8eFcBFg" />
+
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.stratafy.activities.MainActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name="com.stratafy.activities.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.SelectRecidencyActivity"
+            android:name="com.stratafy.activities.SelectRecidencyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.SplashActivity"
+            android:name="com.stratafy.activities.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,25 +68,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.SignupActivity"
+            android:name="com.stratafy.activities.SignupActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".activities.SigninActivity"
+            android:name="com.stratafy.activities.SigninActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".activities.ForgetPassword"
+            android:name="com.stratafy.activities.ForgetPassword"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <!-- Firebase Notifications -->
-        <service android:name=".service.MyFirebaseMessagingService">
+        <service android:name="com.stratafy.service.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".service.MyFirebaseInstanceIDService">
+        <service android:name="com.stratafy.service.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
@@ -77,9 +94,11 @@
         <!-- ./Firebase Notifications -->
 
         <activity
-            android:name=".activities.ThankyouActivity"
+            android:name="com.stratafy.activities.ThankyouActivity"
             android:screenOrientation="portrait" />
-
+        <activity android:name="com.stratafy.activities.VerifyActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
     </application>
 
 </manifest>

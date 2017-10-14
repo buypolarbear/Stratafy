@@ -53,6 +53,45 @@
     <string name="selectDate">Event Date</string>
     <string name="Etime">Event End Time</string>
     <string name="Stime">Event Start Time</string>
+    <string name="signins">Sign In</string>
+    <string name="verify_you">We need to verify you \nto ensure property privacy</string>
+    <string name="takes_times">Only takes a couple seconds... kind of...</string>
+    <string name="profile_pic">Profile Picture</string>
+    <string name="fname">Firstname</string>
+    <string name="lname">Lastname</string>
+    <string name="phone">Cell / Mobile Number</string>
+    <string name="dob">DOB</string>
+    <string name="gender">Gender</string>
+    <string name="addres">Address</string>
+    <string name="aptno">Apartment Number</string>
+    <string name="peoples">Number of people in household</string>
+    <string name="bedrooms">Number of bedrooms</string>
+    <string name="bathrooms">Number of bathrooms</string>
+    <string name="cars">Number of Car Spaces</string>
+    <string name="carno">Primary Car Registration Number</string>
+    <string name="pname">Key Property Contact name if not you</string>
+    <string name="pno">Key Property Contact number if you not</string>
+    <string name="ename">Emergency Contact Name</string>
+    <string name="eno">Emergency Contact Number</string>
+    <string name="agentname">Landlord / Agent Name</string>
+    <string name="agentno">Landlord / Agent Number</string>
+    <string name="jobposition">Position</string>
+    <string name="companyname">Company Name</string>
+    <string name="empNo">Employee Number</string>
+    <string name="emptype">Employment Type</string>
+    <string name="carReg">Car Registration</string>
+    <string name="keyname">Key Contact Name / Number</string>
+    <string name="industry">Industry</string>
+    <string name="floor">Floor</string>
+    <string name="shopname">Shop Name</string>
+    <string name="shoplocation">Shop Location #</string>
+    <string name="shopnumber">Shop Phone Number</string>
+    <string name="listview">LIST VIEW</string>
+    <string name="mapview">MAP VIEW</string>
 
+    <string name="alert_gps_not_enable">GPS is not enabled. Do you want to go to settings menu?</string>
+    <string name="alert_gps_title">GPS Settings</string>
+    <string name="alert_gps_yes">Settings</string>
+    <string name="alert_gps_no">Cancel</string>
 
 </resources>

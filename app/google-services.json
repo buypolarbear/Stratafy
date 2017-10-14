@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "345651605771",
-    "firebase_url": "https://strataapp-10e11.firebaseio.com",
-    "project_id": "strataapp-10e11",
-    "storage_bucket": "strataapp-10e11.appspot.com"
+    "project_number": "432086227547",
+    "firebase_url": "https://devstratafyapp.firebaseio.com",
+    "project_id": "devstratafyapp",
+    "storage_bucket": "devstratafyapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:345651605771:android:0bdefdade544adad",
+        "mobilesdk_app_id": "1:432086227547:android:b37e0b06cf78aca8",
         "android_client_info": {
-          "package_name": "com.pixeldart"
+          "package_name": "com.stratafy"
         }
       },
       "oauth_client": [
         {
-          "client_id": "345651605771-nrukgnkstobfn5ol6ndlu3bec1ubq17t.apps.googleusercontent.com",
+          "client_id": "432086227547-qshc5reif2jrjpp2nsvrktv0d1ajusb4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.pixeldart",
+            "package_name": "com.stratafy",
             "certificate_hash": "a89fb37c5ec9f5da54cd5131ffe18e0eb2d52c63"
           }
         },
         {
-          "client_id": "345651605771-qt3jb9tr5k35s3cb7v3tg8nf31qg7hj8.apps.googleusercontent.com",
+          "client_id": "432086227547-suf420kje4135iub762lp5bnmie76jn3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBJI0PLs3vyctmn9OofNuCNFJlmn2D9Ksk"
+          "current_key": "AIzaSyBdF3sLk7ppcf_cqyD3SMpHuESaI3c9vt4"
         }
       ],
       "services": {
@@ -40,15 +40,8 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "345651605771-qt3jb9tr5k35s3cb7v3tg8nf31qg7hj8.apps.googleusercontent.com",
+              "client_id": "432086227547-suf420kje4135iub762lp5bnmie76jn3.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "345651605771-knjljl53evt5mj0fe6umgof4am524o00.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.stratafy"
-              }
             }
           ]
         },

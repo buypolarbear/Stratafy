@@ -17,4 +17,6 @@
     <color name="carrot">#e67e22</color>
     <color name="amesty">#9b59b6</color>
     <color name="greyDark">#818181</color>
+    <color name="teal">#55cfbf</color>
+    <color name="transperent">#00000000</color>
 </resources>

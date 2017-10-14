@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.pixeldart.activities.LoginActivity">
+    tools:context="com.stratafy.activities.LoginActivity">
 
     <LinearLayout
         android:layout_weight="0.11"

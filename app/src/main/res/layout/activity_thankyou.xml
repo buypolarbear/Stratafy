@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pixeldart.activities.ThankyouActivity">
+    tools:context="com.stratafy.activities.ThankyouActivity">
 
     <ImageView
         android:id="@+id/imgThank"
