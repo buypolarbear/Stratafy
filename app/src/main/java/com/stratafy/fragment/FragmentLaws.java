@@ -38,20 +38,16 @@ import java.util.List;
  */
 
 public class FragmentLaws extends Fragment {
-
-    private static final String EXTRA_TEXT = "text";
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private LinearLayout ll1, ll2;
     private TextView txtSummary;
     private ProgressBar mProgressBar;
     private List<Laws> mLawsList = new ArrayList<>();
+    private String summery;
 
-    public static FragmentLaws instance(String text) {
+    public static FragmentLaws instance() {
         FragmentLaws fragment = new FragmentLaws();
-        Bundle args = new Bundle();
-        args.putString(EXTRA_TEXT, text);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -73,21 +69,15 @@ public class FragmentLaws extends Fragment {
         ll1 = (LinearLayout)view.findViewById(R.id.ll1);
         ll2 = (LinearLayout)view.findViewById(R.id.ll2);
         txtSummary = (TextView) view.findViewById(R.id.txtSummary);
-        txtSummary.setTypeface(Glob.avenir(getActivity()));
 
         MainActivity.txtToolbarTitle.setVisibility(View.VISIBLE);
         MainActivity.txtToolbarTitle.setText("By-Laws");
+        MainActivity.imgStreaming.setVisibility(View.GONE);
 
         viewPager = (ViewPager)view.findViewById(R.id.viewpager);
-
-
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         OnPageChange();
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         getLaws();
     }
 
@@ -133,7 +123,7 @@ public class FragmentLaws extends Fragment {
 
     private void setupViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
-        adapter.addFragment(FragmentCurrentLaws.newInstance(mLawsList),
+        adapter.addFragment(FragmentCurrentLaws.newInstance(mLawsList, summery),
                 getResources().getString(R.string.current));
         adapter.addFragment(FragmentFutureVote.newInstance("", ""), getResources().getString(R.string.future));
         viewPager.setAdapter(adapter);
@@ -176,8 +166,8 @@ public class FragmentLaws extends Fragment {
     }
 
     private void getLaws() {
-        String tag_string_req = "req_login";
         String url = Glob.API_GET_LAWS + MainActivity.property_id + ".json?user_id="+MainActivity.uid;
+        Log.d("URL", url);
         StringRequest strReq = new StringRequest(Request.Method.GET,
                 url, new Response.Listener<String>() {
             @Override
@@ -192,11 +182,16 @@ public class FragmentLaws extends Fragment {
                         mProgressBar.setVisibility(View.GONE);
                         JSONObject data = jObj.getJSONObject("data");
                         JSONArray laws = data.getJSONObject("by_law").getJSONArray("laws");
+                        summery = data.getJSONObject("by_law").getString("summery");
                         for(int i= 0; i < laws.length(); i++){
                             JSONObject obj = laws.getJSONObject(i);
                             Laws laws1 = new Laws();
+                            laws1.setLaw_id(obj.getString("id"));
                             laws1.setLaw_name(obj.getString("title"));
                             laws1.setLaw_text(obj.getString("description"));
+                            laws1.setStatus(obj.getString("status"));
+                            laws1.setAgree(obj.getString("aggreed"));
+                            laws1.setDisagree(obj.getString("disagreed"));
                             mLawsList.add(laws1);
                         }
                         setupViewPager();
@@ -220,7 +215,7 @@ public class FragmentLaws extends Fragment {
             }
         });
         strReq.setShouldCache(false);
-        MyApplication.getInstance().addToRequestQueue(strReq, tag_string_req);
+        MyApplication.getInstance().addToRequestQueue(strReq);
     }
 
     public static void longLog(String str, String log) {
@@ -230,5 +225,4 @@ public class FragmentLaws extends Fragment {
         } else
             Log.d(log, str);
     }
-
 }

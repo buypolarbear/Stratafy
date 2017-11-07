@@ -23,7 +23,7 @@ import java.util.List;
 
 public class FragmentNotification extends Fragment {
 
-    private List<Notifications> mList;
+    private List<Notifications> mList = new ArrayList<>();
 
     private RecyclerView recycleLog;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -60,9 +60,7 @@ public class FragmentNotification extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        mList = new ArrayList<>();
-        mList = getArguments().getParcelableArrayList("list");
-
+        mList = getArguments().getParcelableArrayList(EXTRA_TEXT);
         adapter = new AdapterNotification(getActivity(), mList);
         recycleLog.setAdapter(adapter);
     }

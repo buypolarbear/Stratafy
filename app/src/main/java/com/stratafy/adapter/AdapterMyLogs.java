@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.stratafy.R;
 
 import com.stratafy.fragment.FragmentApprove;
-import com.stratafy.helper.Glob;
 import com.stratafy.model.MyLogs;
 
 import java.util.List;
@@ -82,11 +81,6 @@ public class AdapterMyLogs extends RecyclerView.Adapter<AdapterMyLogs.MyViewHold
             txtCatName = (TextView)itemView.findViewById(R.id.txtCatName);
             txtCatType = (TextView)itemView.findViewById(R.id.txtCatType);
             txtApprove = (TextView)itemView.findViewById(R.id.txtApprove);
-
-            txtDate.setTypeface(Glob.avenir(context));
-            txtCatName.setTypeface(Glob.avenir(context));
-            txtCatType.setTypeface(Glob.avenir(context));
-            txtApprove.setTypeface(Glob.avenir(context));
 
         }
     }

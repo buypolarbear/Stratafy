@@ -93,5 +93,6 @@
     <string name="alert_gps_title">GPS Settings</string>
     <string name="alert_gps_yes">Settings</string>
     <string name="alert_gps_no">Cancel</string>
+    <string name="profile">Your Profile</string>
 
 </resources>

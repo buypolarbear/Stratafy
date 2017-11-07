@@ -17,7 +17,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -61,6 +63,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -93,6 +96,9 @@ public class FragmentAround extends Fragment implements OnMapReadyCallback, Goog
     private RecyclerView recyclerAround;
     private RecyclerView.LayoutManager mLayoutManager;
     private AdapterAround adapterAround;
+    ArrayList<String> hourList;
+    private HashMap<Marker, Integer> mHashMap = new HashMap<Marker, Integer>();
+    int count;
 
     public static FragmentAround instance(String text) {
         FragmentAround fragment = new FragmentAround();
@@ -112,6 +118,7 @@ public class FragmentAround extends Fragment implements OnMapReadyCallback, Goog
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_around, container, false);
         initialization(view);
+        MainActivity.imgStreaming.setVisibility(View.GONE);
 
         mapFrag = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map);
 
@@ -168,10 +175,6 @@ public class FragmentAround extends Fragment implements OnMapReadyCallback, Goog
         txtList = (Button) view.findViewById(R.id.txtList);
         txtMap = (Button)view.findViewById(R.id.txtMap);
 
-        txtPlaceName.setTypeface(Glob.avenir(getActivity()));
-        txtDistance.setTypeface(Glob.avenir(getActivity()));
-        txtList.setTypeface(Glob.avenir(getActivity()));
-        txtMap.setTypeface(Glob.avenir(getActivity()));
 
         MainActivity.txtToolbarTitle.setVisibility(View.VISIBLE);
         MainActivity.txtToolbarTitle.setText("Around me");
@@ -181,6 +184,28 @@ public class FragmentAround extends Fragment implements OnMapReadyCallback, Goog
         recyclerAround.setLayoutManager(mLayoutManager);
         adapterAround = new AdapterAround(getActivity(), mAroundList);
         recyclerAround.setAdapter(adapterAround);
+
+        llPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AroundPlaces places = mAroundList.get(count);
+                Bundle bundle = new Bundle();
+                bundle.putString("address", places.getAddress());
+                bundle.putString("title", places.getPlacename());
+                bundle.putString("KM", places.getDistance());
+                bundle.putString("Category", places.getCategory());
+                bundle.putString("phone", places.getPhone());
+                bundle.putString("website", places.getWebsite());
+                bundle.putString("lat", places.getLatitude());
+                bundle.putString("lng", places.getLongitude());
+                bundle.putStringArrayList("opening_hours", places.getOpeningHour());
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+                DialogPlace newFragment = DialogPlace.newInstance();
+                newFragment.setArguments(bundle);
+                newFragment.show(ft, "slideshow");
+            }
+        });
     }
 
     @Override
@@ -329,6 +354,15 @@ public class FragmentAround extends Fragment implements OnMapReadyCallback, Goog
                             places.setImage(obj.getString("image"));
                             places.setTime(obj.getString("time"));
                             places.setWebsite(obj.getString("website"));
+
+                            JSONArray hours = obj.getJSONArray("opening_hours");
+                            if(hours != null){
+                                hourList = new ArrayList<>();
+                                for (int j=0; j < hours.length(); j++){
+                                    hourList.add(hours.get(j).toString());
+                                }
+                                places.setOpeningHour(hourList);
+                            }
                             mAroundList.add(places);
                         }
                         adapterAround.notifyDataSetChanged();
@@ -379,11 +413,12 @@ public class FragmentAround extends Fragment implements OnMapReadyCallback, Goog
                 }
 
 
-                mGoogleMap.addMarker(new MarkerOptions()
+                Marker marker = mGoogleMap.addMarker(new MarkerOptions()
                         .position(new LatLng(Double.parseDouble(places.getLatitude()), Double.parseDouble(places.getLongitude())))
                         .snippet(places.getDistance() + time)
                         .title(places.getPlacename())
                         .icon(getBitmapDescriptor(getActivity(), R.drawable.ico_map_marker)));
+                mHashMap.put(marker, i);
             }
         }
 
@@ -393,6 +428,7 @@ public class FragmentAround extends Fragment implements OnMapReadyCallback, Goog
                 llPlace.setVisibility(View.VISIBLE);
                 txtPlaceName.setText(marker.getTitle());
                 txtDistance.setText(marker.getSnippet());
+                count = mHashMap.get(marker);
                 return true;
             }
         });

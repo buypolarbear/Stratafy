@@ -1,5 +1,6 @@
 package com.stratafy.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.stratafy.R;
-import com.stratafy.helper.Glob;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -18,6 +20,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private LinearLayout llSignup, llSignin;
 
     private Intent intent;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +40,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void initialization(LoginActivity activity) {
         txtSignin = (TextView)findViewById(R.id.txtSignin);
         txtSignup = (TextView)findViewById(R.id.txtSignup);
-
-        txtSignin.setTypeface(Glob.avenir(activity));
-        txtSignup.setTypeface(Glob.avenir(activity));
 
         llSignin = (LinearLayout)findViewById(R.id.llSignin);
         llSignup = (LinearLayout)findViewById(R.id.llSignup);

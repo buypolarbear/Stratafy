@@ -8,19 +8,27 @@ import android.os.Parcelable;
  */
 
 public class Laws implements Parcelable {
-    String law_name, law_text;
+    String law_name, law_text, law_id, status, agree, disagree;
 
     public Laws(){}
 
     protected Laws(Parcel in) {
         law_name = in.readString();
         law_text = in.readString();
+        law_id = in.readString();
+        status = in.readString();
+        agree = in.readString();
+        disagree = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(law_name);
         dest.writeString(law_text);
+        dest.writeString(law_id);
+        dest.writeString(status);
+        dest.writeString(agree);
+        dest.writeString(disagree);
     }
 
     @Override
@@ -54,5 +62,37 @@ public class Laws implements Parcelable {
 
     public void setLaw_text(String law_text) {
         this.law_text = law_text;
+    }
+
+    public String getLaw_id() {
+        return law_id;
+    }
+
+    public void setLaw_id(String law_id) {
+        this.law_id = law_id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getAgree() {
+        return agree;
+    }
+
+    public void setAgree(String agree) {
+        this.agree = agree;
+    }
+
+    public String getDisagree() {
+        return disagree;
+    }
+
+    public void setDisagree(String disagree) {
+        this.disagree = disagree;
     }
 }

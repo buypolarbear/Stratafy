@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
 import com.stratafy.R;
-import com.stratafy.helper.Glob;
 import com.stratafy.model.Snap;
 
 import java.util.ArrayList;
@@ -86,7 +85,6 @@ public class SnapAdapter extends RecyclerView.Adapter<SnapAdapter.ViewHolder> im
         public ViewHolder(View itemView) {
             super(itemView);
             snapTextView = (TextView) itemView.findViewById(R.id.txtLetter);
-            snapTextView.setTypeface(Glob.avenir(context));
             recyclerView = (RecyclerView) itemView.findViewById(R.id.recyclerView);
         }
     }

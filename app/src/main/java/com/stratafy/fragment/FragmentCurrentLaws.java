@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,23 +23,29 @@ import com.stratafy.model.Laws;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 public class FragmentCurrentLaws extends Fragment {
 
     private RecyclerView recyclerLaws;
     private RecyclerView.LayoutManager mLayoutManager;
     private AdapterLaws adapterLaws;
     private List<Laws> mLawsList;
-    private static final String EXTRA_TEXT = "list";
+    private static final String EXTRA_TEXT2 = "listLaw";
 
-    private TextView txt3;
+    @BindView(R.id.txtSummary) TextView txtSummary;
+    private Unbinder unbinder;
 
     public FragmentCurrentLaws() {
     }
 
-    public static FragmentCurrentLaws newInstance(List<Laws> mLawsList) {
+    public static FragmentCurrentLaws newInstance(List<Laws> mLawsList, String summary) {
         FragmentCurrentLaws fragment = new FragmentCurrentLaws();
         Bundle args = new Bundle();
-        args.putParcelableArrayList(EXTRA_TEXT, (ArrayList<? extends Parcelable>) mLawsList);
+        args.putParcelableArrayList(EXTRA_TEXT2, (ArrayList<? extends Parcelable>) mLawsList);
+        args.putString("summary", summary);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,6 +59,7 @@ public class FragmentCurrentLaws extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fragment_current_laws, container, false);
+        unbinder = ButterKnife.bind(this, view);
         initialization(view);
         return view;
     }
@@ -60,17 +68,26 @@ public class FragmentCurrentLaws extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerLaws = (RecyclerView)view.findViewById(R.id.recyclerLaws);
         recyclerLaws.setLayoutManager(mLayoutManager);
-
-        txt3 = (TextView) view.findViewById(R.id.txt3);
-        txt3.setTypeface(Glob.avenir(getActivity()));
+        recyclerLaws.setNestedScrollingEnabled(false);
+        recyclerLaws.setHasFixedSize(false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         mLawsList = new ArrayList<>();
-        mLawsList = getArguments().getParcelableArrayList("list");
+        mLawsList = getArguments().getParcelableArrayList(EXTRA_TEXT2);
         adapterLaws = new AdapterLaws(getActivity(), mLawsList);
         recyclerLaws.setAdapter(adapterLaws);
+
+
+
+
+        txtSummary.setText(Html.fromHtml(getArguments().getString("summary")));
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

@@ -1,5 +1,6 @@
 package com.stratafy.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.stratafy.R;
-import com.stratafy.helper.Glob;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ForgetPassword extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,6 +22,11 @@ public class ForgetPassword extends AppCompatActivity implements View.OnClickLis
     private Button btnSubmit;
 
     private Intent intent;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +46,10 @@ public class ForgetPassword extends AppCompatActivity implements View.OnClickLis
         edtEmail = (EditText)findViewById(R.id.edtEmail);
 
         btnSubmit = (Button)findViewById(R.id.btnSubmit);
-        btnSubmit.setTypeface(Glob.avenir(context));
         btnSubmit.setOnClickListener(this);
         txtSignin.setOnClickListener(this);
         txtSignup.setOnClickListener(this);
 
-        txtSignup.setTypeface(Glob.avenir(context));
-        txtEmail.setTypeface(Glob.avenir(context));
-        txtSignin.setTypeface(Glob.avenir(context));
-        edtEmail.setTypeface(Glob.avenir(context));
     }
 
     @Override

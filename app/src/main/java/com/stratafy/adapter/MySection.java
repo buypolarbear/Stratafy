@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.stratafy.R;
 import com.stratafy.fragment.FragmentPdf;
-import com.stratafy.helper.Glob;
 import com.stratafy.model.DocumentChild;
 
 import java.text.ParseException;
@@ -102,12 +101,7 @@ public class MySection extends StatelessSection {
             super(itemView);
             txtFile = (TextView) itemView.findViewById(R.id.txtFname);
             txtFType = (TextView) itemView.findViewById(R.id.txtFType);
-            txtFile.setTypeface(Glob.avenir(context));
-            txtFType.setTypeface(Glob.avenir(context));
-
             btnView = (Button)itemView.findViewById(R.id.btnView);
-            btnView.setTypeface(Glob.avenir(context));
-
         }
     }
 
@@ -117,7 +111,6 @@ public class MySection extends StatelessSection {
         public MyHeaderViewHolder(View itemView) {
             super(itemView);
             txtDate = (TextView) itemView.findViewById(R.id.txtDate);
-            txtDate.setTypeface(Glob.avenir(context));
         }
     }
 }

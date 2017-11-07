@@ -65,6 +65,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class VerifyActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView txtTake_time, txtVerify_you, txtTap, txtProfile_pic, txtFname,
@@ -111,6 +113,11 @@ public class VerifyActivity extends AppCompatActivity implements View.OnClickLis
     private ProgressBar mProgressBar;
     CharSequence[] items = {"Full-time", "Half-time"};
     LinearLayout view, view2;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,73 +210,6 @@ public class VerifyActivity extends AppCompatActivity implements View.OnClickLis
         edtDOB = (EditText) findViewById(R.id.edtDOB);
 
         btnApprove = (Button) findViewById(R.id.btnApprove);
-
-        txtVerify_you.setTypeface(Glob.avenir(context));
-        txtTake_time.setTypeface(Glob.avenir(context));
-        txtTap.setTypeface(Glob.avenir(context));
-        txtProfile_pic.setTypeface(Glob.avenir(context));
-        txtFname.setTypeface(Glob.avenir(context));
-        txtLName.setTypeface(Glob.avenir(context));
-        txtEmail.setTypeface(Glob.avenir(context));
-        txtPhone.setTypeface(Glob.avenir(context));
-        txtM.setTypeface(Glob.avenir(context));
-        txtF.setTypeface(Glob.avenir(context));
-        txtDOB.setTypeface(Glob.avenir(context));
-        txtGender.setTypeface(Glob.avenir(context));
-        txtAddress.setTypeface(Glob.avenir(context));
-        txtAptNo.setTypeface(Glob.avenir(context));
-        txtPeoples.setTypeface(Glob.avenir(context));
-        txtCount.setTypeface(Glob.avenir(context));
-        txtCount2.setTypeface(Glob.avenir(context));
-        txtCount3.setTypeface(Glob.avenir(context));
-        txtCount4.setTypeface(Glob.avenir(context));
-        txtBedrooms.setTypeface(Glob.avenir(context));
-        txtBathrooms.setTypeface(Glob.avenir(context));
-        txtCars.setTypeface(Glob.avenir(context));
-        txtCarNo.setTypeface(Glob.avenir(context));
-        txtPCName.setTypeface(Glob.avenir(context));
-        txtPCNo.setTypeface(Glob.avenir(context));
-        txtEName.setTypeface(Glob.avenir(context));
-        txtENo.setTypeface(Glob.avenir(context));
-        txtAgentName.setTypeface(Glob.avenir(context));
-        txtAgentNo.setTypeface(Glob.avenir(context));
-        txtEmpNo.setTypeface(Glob.avenir(context));
-        txtEmpType.setTypeface(Glob.avenir(context));
-        txtCarReg.setTypeface(Glob.avenir(context));
-        txtkeyName.setTypeface(Glob.avenir(context));
-
-        txtPosition.setTypeface(Glob.avenir(context));
-        txtFloor.setTypeface(Glob.avenir(context));
-
-        txtShopName.setTypeface(Glob.avenir(context));
-        txtShopLocation.setTypeface(Glob.avenir(context));
-        txtShopNumber.setTypeface(Glob.avenir(context));
-
-        edtFname.setTypeface(Glob.avenir(context));
-        edtLName.setTypeface(Glob.avenir(context));
-        edtEmail.setTypeface(Glob.avenir(context));
-        edtPhone.setTypeface(Glob.avenir(context));
-        btnApprove.setTypeface(Glob.avenir(context));
-        edtAddress.setTypeface(Glob.avenir(context));
-        edtAptNo.setTypeface(Glob.avenir(context));
-        edtCarNo.setTypeface(Glob.avenir(context));
-        edtPCNo.setTypeface(Glob.avenir(context));
-        edtPCName.setTypeface(Glob.avenir(context));
-        edtEName.setTypeface(Glob.avenir(context));
-        edtENo.setTypeface(Glob.avenir(context));
-        edtAgentName.setTypeface(Glob.avenir(context));
-        edtAgentNo.setTypeface(Glob.avenir(context));
-        edtEmpNo.setTypeface(Glob.avenir(context));
-        edtEmpType.setTypeface(Glob.avenir(context));
-        edtCarReg.setTypeface(Glob.avenir(context));
-        edtKeyName.setTypeface(Glob.avenir(context));
-
-        edtPosition.setTypeface(Glob.avenir(context));
-        edtFloor.setTypeface(Glob.avenir(context));
-        edtShopName.setTypeface(Glob.avenir(context));
-        edtShopLocation.setTypeface(Glob.avenir(context));
-        edtShopNumber.setTypeface(Glob.avenir(context));
-        edtDOB.setTypeface(Glob.avenir(context));
 
         llMale = (LinearLayout) findViewById(R.id.llMale);
         llFemale = (LinearLayout) findViewById(R.id.llFemale);
@@ -373,15 +313,11 @@ public class VerifyActivity extends AppCompatActivity implements View.OnClickLis
         if(view != null){
             txtCompanyName = (TextView)view.findViewById(R.id.txtCompanyName);
             edtCompanyName = (EditText) view.findViewById(R.id.edtCompanyName);
-            txtCompanyName.setTypeface(Glob.avenir(context));
-            edtCompanyName.setTypeface(Glob.avenir(context));
         }
 
         if(view2 != null){
             txtIndustry = (TextView) view2.findViewById(R.id.txtIndustry);
             edtIndustry = (EditText) view2.findViewById(R.id.edtIndustry);
-            txtIndustry.setTypeface(Glob.avenir(context));
-            edtIndustry.setTypeface(Glob.avenir(context));
         }
 
     }

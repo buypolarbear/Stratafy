@@ -1,5 +1,6 @@
 package com.stratafy.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,12 +10,18 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.stratafy.R;
-import com.stratafy.helper.Glob;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SelectRecidencyActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView txtResidetial, txtCommercial, txtRetail;
     private Intent intent;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +38,6 @@ public class SelectRecidencyActivity extends AppCompatActivity implements View.O
         txtResidetial = (TextView)findViewById(R.id.txtResidential);
         txtCommercial = (TextView)findViewById(R.id.txtCommmercial);
         txtRetail = (TextView)findViewById(R.id.txtRetail);
-
-        txtResidetial.setTypeface(Glob.avenir(context));
-        txtCommercial.setTypeface(Glob.avenir(context));
-        txtRetail.setTypeface(Glob.avenir(context));
 
         txtResidetial.setOnClickListener(this);
         txtCommercial.setOnClickListener(this);

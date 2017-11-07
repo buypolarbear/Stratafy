@@ -73,6 +73,7 @@ public class FragmentDocument extends Fragment {
         View view = inflater.inflate(R.layout.fragment_document, container, false);
         MainActivity.txtToolbarTitle.setVisibility(View.VISIBLE);
         MainActivity.txtToolbarTitle.setText(getResources().getString(R.string.strataDoc));
+        MainActivity.imgStreaming.setVisibility(View.GONE);
         initialization(view);
         return view;
     }

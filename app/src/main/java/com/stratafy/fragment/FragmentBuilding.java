@@ -89,6 +89,7 @@ public class FragmentBuilding extends Fragment {
 
         MainActivity.txtToolbarTitle.setVisibility(View.VISIBLE);
         MainActivity.txtToolbarTitle.setText("Directory");
+        MainActivity.imgStreaming.setVisibility(View.GONE);
 
         initialization(view);
         getCategory();
@@ -302,15 +303,11 @@ public class FragmentBuilding extends Fragment {
         }
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
-
             TextView txtText;
             LinearLayout ll;
-
             public MyViewHolder(View itemView) {
                 super(itemView);
                 txtText = (TextView) itemView.findViewById(R.id.txtText);
-                txtText.setTypeface(Glob.avenir(context));
-
                 ll = (LinearLayout) itemView.findViewById(R.id.ll);
             }
         }

@@ -25,6 +25,11 @@ public class Glob {
     public static final String API_GET_EVENT = MAIN_DOMAIN + "events/index/";
     public static final String API_EDIT_PROFILE = MAIN_DOMAIN + "buildings/edituser/";
     public static final String API_GOOGLE_PLACES = MAIN_DOMAIN + "google_places/index/";
+    public static final String API_MENU_DRAWER = MAIN_DOMAIN + "buildings/manage/";
+    public static final String API_CONCIERGE = MAIN_DOMAIN + "concierges/index/";
+    public static final String API_GET_USER = MAIN_DOMAIN + "buildings/changeproperty/";
+    public static final String API_BOOKING = MAIN_DOMAIN + "amenities/index/";
+    public static final String API_AGREE_DISAGREE = MAIN_DOMAIN + "laws/voting/";
 
     public static Typeface avenir(Context context){
         return Typeface.createFromAsset(context.getAssets(), "font/Avenir_45_Book.ttf");

@@ -125,13 +125,6 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
         txtGetInTouch = (TextView) view.findViewById(R.id.txtGetInTouch);
         txtByLaws = (TextView) view.findViewById(R.id.txtViewLaw);
 
-        txtStreet.setTypeface(Glob.avenir(getActivity()));
-        txtAddress.setTypeface(Glob.avenir(getActivity()));
-        txtLink.setTypeface(Glob.avenir(getActivity()));
-        txtQuickLinks.setTypeface(Glob.avenir(getActivity()));
-        txtLog.setTypeface(Glob.avenir(getActivity()));
-        txtGetInTouch.setTypeface(Glob.avenir(getActivity()));
-        txtByLaws.setTypeface(Glob.avenir(getActivity()));
         mProgressBar = (ProgressBar) view.findViewById(R.id.mProgressbar);
 
         btnInfo = (FloatingActionButton)view.findViewById(R.id.btnInfo);
@@ -323,7 +316,6 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
         Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.dialog_info);
         TextView txtInfo = (TextView) dialog.findViewById(R.id.txtInfo);
-        txtInfo.setTypeface(Glob.avenir(getActivity()));
         txtInfo.setText(description);
         dialog.show();
     }

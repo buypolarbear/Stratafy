@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.stratafy.R;
 import com.stratafy.helper.CustomDialogEvent;
-import com.stratafy.helper.Glob;
 import com.stratafy.model.Events;
 
 import java.util.List;
@@ -73,9 +72,6 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
             txtSTime = (TextView)itemView.findViewById(R.id.txtSTime);
             txtETime = (TextView)itemView.findViewById(R.id.txtETime);
 
-            txtTitle.setTypeface(Glob.avenir(context));
-            txtSTime.setTypeface(Glob.avenir(context));
-            txtETime.setTypeface(Glob.avenir(context));
         }
     }
 }

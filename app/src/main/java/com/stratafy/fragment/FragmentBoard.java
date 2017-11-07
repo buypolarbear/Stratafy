@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.stratafy.R;
+import com.stratafy.activities.MainActivity;
 
 /**
  * Created by cn on 8/16/2017.
@@ -35,6 +36,7 @@ public class FragmentBoard extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_board, container, false);
+        MainActivity.imgStreaming.setVisibility(View.GONE);
 
         return view;
     }

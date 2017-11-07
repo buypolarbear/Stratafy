@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -26,11 +27,12 @@ import com.stratafy.helper.Glob;
 
 public class FragmentApprove extends Fragment implements View.OnClickListener {
 
-    private EditText edtCategory, edtNotes;
+    private EditText edtCategory, edtNotes, edtPrivate;
     private TextView txtTitle, txtDetails;
     private FloatingActionButton btnPhoto, btnClose;
     private ImageView img;
     private RelativeLayout llRoot, llRoot2;
+    private Button btnDelete, btnReject, btnUpdate;
 
     public static FragmentApprove instance(String title, String detail, String cat_name, String image) {
         FragmentApprove fragment = new FragmentApprove();
@@ -71,12 +73,11 @@ public class FragmentApprove extends Fragment implements View.OnClickListener {
 
         edtCategory = (EditText) view.findViewById(R.id.edtCategory);
         edtNotes = (EditText) view.findViewById(R.id.edtNotes);
+        edtPrivate = (EditText) view.findViewById(R.id.edtPrivate);
 
-        edtCategory.setTypeface(Glob.avenir(context));
-        edtNotes.setTypeface(Glob.avenir(context));
-
-        txtTitle.setTypeface(Glob.avenir(context));
-        txtDetails.setTypeface(Glob.avenir(context));
+        btnDelete = (Button)view.findViewById(R.id.btnDelete);
+        btnReject = (Button)view.findViewById(R.id.btnReject);
+        btnUpdate = (Button)view.findViewById(R.id.btnUpdate);
 
         btnPhoto = (FloatingActionButton) view.findViewById(R.id.btnPhoto);
         btnClose = (FloatingActionButton) view.findViewById(R.id.btnClose);
@@ -84,6 +85,10 @@ public class FragmentApprove extends Fragment implements View.OnClickListener {
         btnPhoto.setOnClickListener(this);
         btnClose.setOnClickListener(this);
         edtNotes.setOnClickListener(this);
+
+        if(MainActivity.profile_type.equals("manager")){
+
+        }
     }
 
     @Override
@@ -124,7 +129,6 @@ public class FragmentApprove extends Fragment implements View.OnClickListener {
             Glide.with(getActivity()).load(getArguments().getString("image")).into(img);
             Log.d("ImageURL1:", String.valueOf(getArguments().getString("image")));
         }
-
 
     }
 

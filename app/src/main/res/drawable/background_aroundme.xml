@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@color/transperent"/>
+    <item android:drawable="@color/colorPrimary"/>
     <item android:id="@+id/first_img2">
         <bitmap android:src="@drawable/aroundme"/>
     </item>
 
     <item android:top="230dp"
-        android:bottom="-100dp"
+        android:bottom="-230dp"
         android:left="0dp"
         android:right="-230dp">
         <rotate
@@ -16,7 +16,7 @@
             <shape
                 android:shape="rectangle">
                 <solid
-                    android:color="#00000000"/>
+                    android:color="#FFF"/>
             </shape>
         </rotate>
     </item>

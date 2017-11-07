@@ -1,6 +1,5 @@
 package com.stratafy.fragment;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -25,7 +24,6 @@ import com.stratafy.activities.MainActivity;
 import com.stratafy.helper.Glob;
 import com.stratafy.helper.MyApplication;
 import com.stratafy.model.Notifications;
-import com.stratafy.service.Config;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +31,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.stratafy.activities.MainActivity.property_id;
 
 /**
  * Created by cn on 8/14/2017.
@@ -47,13 +47,6 @@ public class FragmentInbox extends Fragment {
     private ProgressBar mProgressBar;
 
     private List<Notifications> mList = new ArrayList<>();
-
-    private SharedPreferences pref;
-    private SharedPreferences.Editor editor;
-
-
-    private String property_id;
-    private int uid;
 
     public static FragmentInbox instance(String text) {
         FragmentInbox fragment = new FragmentInbox();
@@ -73,11 +66,6 @@ public class FragmentInbox extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inbox, container, false);
 
-        pref = getActivity().getSharedPreferences(Config.SHARED_PREF, 0);
-        editor = pref.edit();
-        property_id = pref.getString("property_id", null);
-        uid = pref.getInt("uid", 0);
-
         initialization(view);
         return view;
     }
@@ -85,9 +73,8 @@ public class FragmentInbox extends Fragment {
     private void initialization(View view) {
         mProgressBar = (ProgressBar) view.findViewById(R.id.mProgressbar);
         txt1 = (TextView)view.findViewById(R.id.txt1);
-        txt1.setTypeface(Glob.avenir(getActivity()));
 
-        viewPager = (ViewPager)view.findViewById(R.id.viewpager);
+        viewPager = (ViewPager)view.findViewById(R.id.viewpager1);
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
@@ -191,14 +178,13 @@ public class FragmentInbox extends Fragment {
     private void getNotification(final ViewPager pager) {
         mProgressBar.setVisibility(View.VISIBLE);
         mList.clear();
-        String tag_string_req = "req_login";
-        String url = Glob.API_GET_NOTIFICATION +uid + "/" + property_id + ".json";
+        String url = Glob.API_GET_NOTIFICATION +MainActivity.uid + "/" + property_id + ".json";
         Log.d("URl", url);
         StringRequest strReq = new StringRequest(Request.Method.GET,
                 url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                longLog(response, "Low_response");
+                longLog(response, "Notification_response");
                 try {
                     JSONObject jObj = new JSONObject(response);
                     int status = jObj.getInt("status");
@@ -244,7 +230,7 @@ public class FragmentInbox extends Fragment {
             }
         });
         strReq.setShouldCache(false);
-        MyApplication.getInstance().addToRequestQueue(strReq, tag_string_req);
+        MyApplication.getInstance().addToRequestQueue(strReq);
     }
 }
 

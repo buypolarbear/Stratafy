@@ -1,6 +1,9 @@
 package com.stratafy.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.stratafy.R;
-import com.stratafy.helper.Glob;
+import com.stratafy.fragment.DialogPlace;
 import com.stratafy.model.AroundPlaces;
 
 import java.util.List;
@@ -40,7 +43,7 @@ public class AdapterAround extends RecyclerView.Adapter<AdapterAround.MyViewHold
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        AroundPlaces places = mLawsList.get(position);
+        final AroundPlaces places = mLawsList.get(position);
         holder.txtPlaceName.setText(places.getPlacename());
 
         if (places.getTime() != null && !places.getTime().isEmpty()) {
@@ -53,6 +56,27 @@ public class AdapterAround extends RecyclerView.Adapter<AdapterAround.MyViewHold
         if (places.getImage() != null && !places.getImage().isEmpty()) {
             Glide.with(context).load(places.getImage()).into(holder.imgPlace);
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("address", places.getAddress());
+                bundle.putString("title", places.getPlacename());
+                bundle.putString("KM", places.getDistance());
+                bundle.putString("Category", places.getCategory());
+                bundle.putString("phone", places.getPhone());
+                bundle.putString("website", places.getWebsite());
+                bundle.putString("lat", places.getLatitude());
+                bundle.putString("lng", places.getLongitude());
+                bundle.putStringArrayList("opening_hours", places.getOpeningHour());
+                FragmentTransaction ft = ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction();
+                ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+                DialogPlace newFragment = DialogPlace.newInstance();
+                newFragment.setArguments(bundle);
+                newFragment.show(ft, "slideshow");
+            }
+        });
     }
 
     @Override
@@ -71,8 +95,6 @@ public class AdapterAround extends RecyclerView.Adapter<AdapterAround.MyViewHold
             txtDistance = (TextView) itemView.findViewById(R.id.txtdistance);
             imgPlace = (ImageView) itemView.findViewById(R.id.imgPlace);
 
-            txtPlaceName.setTypeface(Glob.avenir(context));
-            txtDistance.setTypeface(Glob.avenir(context));
         }
     }
 }

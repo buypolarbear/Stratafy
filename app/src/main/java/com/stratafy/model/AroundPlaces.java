@@ -3,14 +3,17 @@ package com.stratafy.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 /**
  * Created by cn on 10/11/2017.
  */
 
 public class AroundPlaces implements Parcelable {
     String id, category, offer, terms_condition, placename, address, latitude, longitude, distance, phone,
-            image, time, website, openinghour;
+            image, time, website;
 
+    ArrayList<String> openingHour;
     public AroundPlaces(){}
 
     protected AroundPlaces(Parcel in) {
@@ -27,7 +30,7 @@ public class AroundPlaces implements Parcelable {
         image = in.readString();
         time = in.readString();
         website = in.readString();
-        openinghour = in.readString();
+        openingHour = in.createStringArrayList();
     }
 
     @Override
@@ -45,7 +48,7 @@ public class AroundPlaces implements Parcelable {
         dest.writeString(image);
         dest.writeString(time);
         dest.writeString(website);
-        dest.writeString(openinghour);
+        dest.writeStringList(openingHour);
     }
 
     @Override
@@ -169,11 +172,11 @@ public class AroundPlaces implements Parcelable {
         this.website = website;
     }
 
-    public String getOpeninghour() {
-        return openinghour;
+    public ArrayList<String> getOpeningHour() {
+        return openingHour;
     }
 
-    public void setOpeninghour(String openinghour) {
-        this.openinghour = openinghour;
+    public void setOpeningHour(ArrayList<String> openingHour) {
+        this.openingHour = openingHour;
     }
 }

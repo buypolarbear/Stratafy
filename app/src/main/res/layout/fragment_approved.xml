@@ -158,6 +158,7 @@
                     android:theme="@style/MyEditTextTheme" />
 
                 <Button
+                    android:id="@+id/btnDelete"
                     android:layout_marginTop="5dp"
                     android:text="Delete"
                     android:background="@color/colorAccent"
@@ -166,6 +167,7 @@
                     android:layout_height="wrap_content" />
 
                 <Button
+                    android:id="@+id/btnReject"
                     android:layout_marginTop="5dp"
                     android:text="Reject"
                     android:background="@color/colorAccent"
@@ -174,8 +176,9 @@
                     android:layout_height="wrap_content" />
 
                 <Button
+                    android:id="@+id/btnUpdate"
                     android:layout_marginTop="5dp"
-                    android:text="Delete"
+                    android:text="UPDATE"
                     android:background="@color/colorAccent"
                     android:textColor="@color/white"
                     android:layout_width="match_parent"

@@ -6,17 +6,24 @@
     android:background="@android:color/white">
 
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-    </LinearLayout>
+    </FrameLayout>
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
+
+    <ProgressBar
+        android:layout_gravity="center"
+        android:id="@+id/mProgressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
 
 

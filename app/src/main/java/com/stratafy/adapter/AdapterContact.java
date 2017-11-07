@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.stratafy.R;
-import com.stratafy.helper.Glob;
 import com.stratafy.model.Contact;
 
 import java.util.List;
@@ -87,9 +86,6 @@ public class AdapterContact extends StatelessSection {
             txtNameLetter = (TextView) itemView.findViewById(R.id.txtNameLetter);
             txtName = (TextView) itemView.findViewById(R.id.txtName);
             txtPosition = (TextView) itemView.findViewById(R.id.txtPosition);
-            txtNameLetter.setTypeface(Glob.avenir(context));
-            txtName.setTypeface(Glob.avenir(context));
-            txtPosition.setTypeface(Glob.avenir(context));
 
         }
     }
@@ -100,7 +96,6 @@ public class AdapterContact extends StatelessSection {
         public MyHeaderViewHolder(View itemView) {
             super(itemView);
             txtLetter = (TextView) itemView.findViewById(R.id.txtLetter);
-            txtLetter.setTypeface(Glob.avenir(context));
         }
     }
 }

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -12,7 +13,7 @@
 
         <TextView
             android:textSize="18sp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/black"
             android:id="@+id/txtLawName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -40,15 +41,26 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/llAgree"
             android:layout_weight="1"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <com.like.LikeButton
+                app:is_enabled="false"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center"
+                app:icon_type="heart"
+                app:icon_size="16dp"
+                android:id="@+id/ic_agree"
+                android:layout_width="16dp"
+                android:layout_height="16dp"/>
 
             <TextView
                 android:id="@+id/txtAgreed"
                 android:layout_gravity="center"
-                android:padding="8dp"
+                android:padding="5dp"
                 android:text="Agreed"
                 android:textColor="@color/greyDark"
                 android:layout_width="wrap_content"
@@ -57,15 +69,26 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llDisagree"
             android:layout_weight="1"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <com.like.LikeButton
+                app:is_enabled="false"
+                android:layout_gravity="center"
+                app:like_drawable="@drawable/ic_close_accent"
+                app:unlike_drawable="@drawable/ic_close_greydark"
+                app:icon_size="20dp"
+                android:id="@+id/ic_disagree"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
 
             <TextView
                 android:id="@+id/txtDisagreed"
                 android:layout_gravity="center"
-                android:padding="8dp"
+                android:padding="5dp"
                 android:text="Disagree"
                 android:textColor="@color/greyDark"
                 android:layout_width="wrap_content"
@@ -75,14 +98,20 @@
 
         <LinearLayout
             android:layout_weight="1"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@drawable/ic_buble_grey"
+                android:layout_width="16dp"
+                android:layout_height="16dp" />
 
             <TextView
                 android:id="@+id/txtComment"
                 android:layout_gravity="center"
-                android:padding="8dp"
+                android:padding="5dp"
                 android:text="Comment"
                 android:textColor="@color/greyDark"
                 android:layout_width="wrap_content"
@@ -90,15 +119,15 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </LinearLayout>
-
-
+        <ImageView
+            android:id="@+id/img_statastic"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_statistic"
+            android:layout_width="16dp"
+            android:layout_height="16dp" />
 
     </LinearLayout>
 

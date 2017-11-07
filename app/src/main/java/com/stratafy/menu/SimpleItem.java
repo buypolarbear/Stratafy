@@ -77,7 +77,6 @@ public class SimpleItem extends DrawerItem<SimpleItem.ViewHolder> {
             super(itemView);
             icon = (ImageView) itemView.findViewById(R.id.icon);
             title = (TextView) itemView.findViewById(R.id.title);
-            title.setTypeface(Glob.avenir(context));
         }
     }
 }

@@ -32,6 +32,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class SigninActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView txtSignin, txtSignup, txtEmail, txtPassword, txtForgot;
@@ -46,6 +48,11 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
     private ConnectionDetector cd;
     private Boolean isInternetPresent = false;
     private ProgressBar mProgressBar;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,18 +84,9 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
         edtPassword = (EditText) findViewById(R.id.edtPassword);
 
         btnSignin = (Button) findViewById(R.id.btnSignin);
-        btnSignin.setTypeface(Glob.avenir(activity));
         btnSignin.setOnClickListener(this);
         txtSignup.setOnClickListener(this);
         txtForgot.setOnClickListener(this);
-
-        txtSignin.setTypeface(Glob.avenir(activity));
-        txtSignup.setTypeface(Glob.avenir(activity));
-        txtEmail.setTypeface(Glob.avenir(activity));
-        txtPassword.setTypeface(Glob.avenir(activity));
-        txtForgot.setTypeface(Glob.avenir(activity));
-
-        edtEmail.setTypeface(Glob.avenir(activity));
     }
 
     @Override
@@ -149,7 +147,8 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
                         editor.putString("username", user.getString("first_name"));
                         editor.putString("email", user.getString("email"));
                         editor.putString("property_id", user.getString("property_id"));
-                        editor.putString("profile_type", user.getString("profile_type"));
+                        JSONObject UserBuilding = user.getJSONObject("UserBuilding");
+                        editor.putString("profile_type", UserBuilding.getString("profile_type"));
                         session.setLogin(true);
                         editor.commit();
                         Intent intent = new Intent(context, MainActivity.class);

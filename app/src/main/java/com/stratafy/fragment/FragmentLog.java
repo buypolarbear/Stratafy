@@ -81,7 +81,7 @@ public class FragmentLog extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_log, container, false);
         MainActivity.txtToolbarTitle.setVisibility(View.VISIBLE);
         MainActivity.txtToolbarTitle.setText(getResources().getString(R.string.logs));
-
+        MainActivity.imgStreaming.setVisibility(View.GONE);
         mProgressBar = (ProgressBar) view.findViewById(R.id.mProgressbar);
 
         pref = getActivity().getSharedPreferences(Config.SHARED_PREF, 0);
@@ -102,14 +102,6 @@ public class FragmentLog extends Fragment implements View.OnClickListener {
         txtMyLog = (TextView)view.findViewById(R.id.txtMyLog);
         txtPLog = (TextView)view.findViewById(R.id.txtPLog);
         txtArchived = (TextView)view.findViewById(R.id.txtArchived);
-
-        txt2.setTypeface(Glob.avenir(getActivity()));
-        txtNoMyLog.setTypeface(Glob.avenir(getActivity()));
-        txtNoPLog.setTypeface(Glob.avenir(getActivity()));
-        txtNoArchived.setTypeface(Glob.avenir(getActivity()));
-        txtMyLog.setTypeface(Glob.avenir(getActivity()));
-        txtPLog.setTypeface(Glob.avenir(getActivity()));
-        txtArchived.setTypeface(Glob.avenir(getActivity()));
 
         llFirst = (LinearLayout)view.findViewById(R.id.llFirst);
         llSecond = (LinearLayout)view.findViewById(R.id.llSecond);
@@ -238,6 +230,7 @@ public class FragmentLog extends Fragment implements View.OnClickListener {
                                 String strings[] = new String[imag.length()];
                                 for(int j=0;j<strings.length;j++) {
                                     strings[j] = imag.getString(j);
+
                                 }
                                 if(strings.length > 0){
                                     logs.setAttachments(strings[0]);

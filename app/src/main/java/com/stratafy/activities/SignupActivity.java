@@ -35,6 +35,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView txtSignup, txtPID, txtPType, txtName, txtEmail, txtPassword, txtSignin, txtTerm;
@@ -51,6 +53,11 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private ConnectionDetector cd;
     private Boolean isInternetPresent = false;
     private ProgressBar mProgressBar;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,27 +113,11 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         edtPassword = (EditText)findViewById(R.id.edtPassword);
 
         btnApprove = (Button)findViewById(R.id.btnApprove);
-        btnApprove.setTypeface(Glob.avenir(activity));
         btnApprove.setOnClickListener(this);
         txtSignin.setOnClickListener(this);
         txtTerm.setOnClickListener(this);
         edtPType.setOnClickListener(this);
 
-        txtSignup.setTypeface(Glob.avenir(activity));
-        txtSignin.setTypeface(Glob.avenir(activity));
-        txtPID.setTypeface(Glob.avenir(activity));
-        txtPType.setTypeface(Glob.avenir(activity));
-        txtName.setTypeface(Glob.avenir(activity));
-        txtEmail.setTypeface(Glob.avenir(activity));
-        txtPassword.setTypeface(Glob.avenir(activity));
-        txtTerm.setTypeface(Glob.avenir(activity));
-
-        edtPID.setTypeface(Glob.avenir(activity));
-        edtPType.setTypeface(Glob.avenir(activity));
-        edtName.setTypeface(Glob.avenir(activity));
-        edtEmail.setTypeface(Glob.avenir(activity));
-        txtEmail.setTypeface(Glob.avenir(activity));
-        txtPassword.setTypeface(Glob.avenir(activity));
     }
 
     @Override

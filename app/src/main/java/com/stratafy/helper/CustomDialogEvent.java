@@ -68,7 +68,6 @@ public class CustomDialogEvent extends Dialog implements
     imgClose.setOnClickListener(this);
 
     txtName = (TextView)findViewById(R.id.txtName);
-    txtName.setTypeface(Glob.avenir(c));
     if(lname != null && !lname.isEmpty()){
       txtName.setText(fname + " " + lname);
     }else {
@@ -77,11 +76,9 @@ public class CustomDialogEvent extends Dialog implements
 
 
     txtEventName = (TextView)findViewById(R.id.txtEventName);
-    txtEventName.setTypeface(Glob.avenir(c));
     txtEventName.setText(eventname);
 
     txtEventDetail = (TextView)findViewById(R.id.txtEventDetail);
-    txtEventDetail.setTypeface(Glob.avenir(c));
 
     if(detail != null && !detail.isEmpty()){
       txtEventDetail.setText(detail);
@@ -90,10 +87,7 @@ public class CustomDialogEvent extends Dialog implements
     }
 
     txtEventDate = (TextView)findViewById(R.id.txtEventDate);
-    txtEventDate.setTypeface(Glob.avenir(c));
-
     txtDate = (TextView)findViewById(R.id.txtDate);
-    txtDate.setTypeface(Glob.avenir(c));
 
     try {
       Date dates = sdf_get.parse(date);
@@ -104,17 +98,11 @@ public class CustomDialogEvent extends Dialog implements
     }
 
     txtEventTime = (TextView)findViewById(R.id.txtEventTime);
-    txtEventTime.setTypeface(Glob.avenir(c));
-
     txtTime = (TextView)findViewById(R.id.txtTime);
-    txtTime.setTypeface(Glob.avenir(c));
     txtTime.setText(sTime + " - " + eTime);
-
     txtCancel = (TextView)findViewById(R.id.txtCancel);
-    txtCancel.setTypeface(Glob.avenir(c));
-
     txtAttending = (TextView)findViewById(R.id.txtAttending);
-    txtAttending.setTypeface(Glob.avenir(c));
+
 
   }
 

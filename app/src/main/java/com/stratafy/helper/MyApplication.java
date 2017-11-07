@@ -16,9 +16,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.Volley;
+import com.stratafy.R;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
 public class MyApplication extends Application {
@@ -53,6 +56,11 @@ public class MyApplication extends Application {
 
         applicationHandler = new Handler(getInstance().getMainLooper());
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("font/Avenir_45_Book.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build());
 
 
     }

@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.stratafy.R;
-import com.stratafy.helper.Glob;
 import com.stratafy.model.Category;
 
 import java.util.List;
@@ -75,8 +74,6 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
         public MyViewHolder(View itemView) {
             super(itemView);
             txtText = (TextView)itemView.findViewById(R.id.txtText);
-            txtText.setTypeface(Glob.avenir(context));
-
             ll = (LinearLayout)itemView.findViewById(R.id.ll);
         }
     }

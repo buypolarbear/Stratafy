@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.stratafy.R;
 import com.stratafy.fragment.FragmentApprove;
-import com.stratafy.helper.Glob;
 import com.stratafy.model.Archived;
 
 import java.util.List;
@@ -82,10 +81,7 @@ public class AdapterArchived extends RecyclerView.Adapter<AdapterArchived.MyView
             txtCatType = (TextView)itemView.findViewById(R.id.txtCatType);
             txtApprove = (TextView)itemView.findViewById(R.id.txtApprove);
 
-            txtDate.setTypeface(Glob.avenir(context));
-            txtCatName.setTypeface(Glob.avenir(context));
-            txtCatType.setTypeface(Glob.avenir(context));
-            txtApprove.setTypeface(Glob.avenir(context));
+
 
         }
     }

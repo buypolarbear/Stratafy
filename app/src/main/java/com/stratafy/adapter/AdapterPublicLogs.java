@@ -3,6 +3,7 @@ package com.stratafy.adapter;
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +13,6 @@ import android.widget.TextView;
 
 import com.stratafy.R;
 import com.stratafy.fragment.FragmentApprove;
-import com.stratafy.helper.Glob;
 import com.stratafy.model.PublicLogs;
 
 import java.util.List;
@@ -46,8 +46,18 @@ public class AdapterPublicLogs extends RecyclerView.Adapter<AdapterPublicLogs.My
         holder.txtCatName.setText(logs.getTitle());
         holder.txtCatType.setText(logs.getLogCategoryName());
 
+        holder.setIsRecyclable(false);
+
         if(!logs.getStatus().equals("null") && !logs.getStatus().isEmpty()){
-            holder.txtApprove.setText(logs.getStatus());
+            if(logs.getStatus().substring(0, 1).equals("R")){
+                holder.txtApprove.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
+                holder.txtApprove.setCompoundDrawablesWithIntrinsicBounds(R.drawable.dot_pink, 0, 0, 0);
+                holder.txtApprove.setText(logs.getStatus());
+            }else {
+                holder.txtApprove.setTextColor(ContextCompat.getColor(context, R.color.green));
+                holder.txtApprove.setCompoundDrawablesWithIntrinsicBounds(R.drawable.dot, 0, 0, 0);
+                holder.txtApprove.setText(logs.getStatus());
+            }
         }else {
             holder.txtApprove.setVisibility(View.GONE);
         }
@@ -82,12 +92,8 @@ public class AdapterPublicLogs extends RecyclerView.Adapter<AdapterPublicLogs.My
             txtCatType = (TextView)itemView.findViewById(R.id.txtCatType);
             txtApprove = (TextView)itemView.findViewById(R.id.txtApprove);
 
-            txtDate.setTypeface(Glob.avenir(context));
-            txtCatName.setTypeface(Glob.avenir(context));
-            txtCatType.setTypeface(Glob.avenir(context));
-            txtApprove.setTypeface(Glob.avenir(context));
-
         }
     }
+
 }
 

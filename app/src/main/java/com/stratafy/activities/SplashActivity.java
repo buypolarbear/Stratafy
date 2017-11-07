@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.stratafy.R;
 import com.stratafy.helper.SessionManager;
 
@@ -29,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
         session = new SessionManager(this);
         imgSplash = (ImageView)findViewById(R.id.imgSplash);
         Glide.with(this).load(R.drawable.splash)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.DATA))
                 .into(imgSplash);
 
         new Handler().postDelayed(new Runnable() {

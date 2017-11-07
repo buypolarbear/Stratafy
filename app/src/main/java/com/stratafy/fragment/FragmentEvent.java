@@ -108,6 +108,7 @@ public class FragmentEvent extends Fragment implements View.OnClickListener {
 
         MainActivity.txtToolbarTitle.setVisibility(View.VISIBLE);
         MainActivity.txtToolbarTitle.setText("Events & Calender");
+        MainActivity.imgStreaming.setVisibility(View.GONE);
 
         initialization(view);
 
@@ -126,13 +127,10 @@ public class FragmentEvent extends Fragment implements View.OnClickListener {
         recycleEvent.setAdapter(adapter);
 
         txtDates = (TextView) view.findViewById(R.id.txtDates);
-        txtDates.setTypeface(Glob.avenir(getActivity()));
 
         edtTitle = (EditText) view.findViewById(R.id.edtTitle);
-        edtTitle.setTypeface(Glob.avenir(getActivity()));
 
         txtDetails = (TextView) view.findViewById(R.id.txtDetails);
-        txtDetails.setTypeface(Glob.avenir(getActivity()));
 
         llRoot2 = (RelativeLayout) view.findViewById(R.id.root2);
         llRoot1 = (RelativeLayout) view.findViewById(R.id.root1);
@@ -142,17 +140,11 @@ public class FragmentEvent extends Fragment implements View.OnClickListener {
         edtETime = (EditText) view.findViewById(R.id.edtETime);
         edtDetail = (EditText) view.findViewById(R.id.edtDetail);
 
-        edtDate.setTypeface(Glob.avenir(getActivity()));
-        edtSTime.setTypeface(Glob.avenir(getActivity()));
-        edtETime.setTypeface(Glob.avenir(getActivity()));
-        edtDetail.setTypeface(Glob.avenir(getActivity()));
-
         edtDate.setOnClickListener(this);
         edtSTime.setOnClickListener(this);
         edtETime.setOnClickListener(this);
 
         btnSubmit = (Button) view.findViewById(R.id.btnSubmit);
-        btnSubmit.setTypeface(Glob.avenir(getActivity()));
         btnSubmit.setOnClickListener(this);
 
         btnAdd = (FloatingActionButton) view.findViewById(R.id.btnAdd);

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.stratafy.R;
-import com.stratafy.helper.Glob;
 import com.stratafy.model.Notifications;
 
 import java.util.List;
@@ -53,9 +52,6 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
         public MyViewHolder(View itemView) {
             super(itemView);
             txtText = (TextView)itemView.findViewById(R.id.txtText);
-            txtText.setTypeface(Glob.avenir(context));
-
-
         }
     }
 }

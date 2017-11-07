@@ -141,16 +141,10 @@ public class FragmentCreateLog extends Fragment implements View.OnClickListener 
         edtCategory.setOnClickListener(this);
         edtNotes.setOnClickListener(this);
 
-        edtDetail.setTypeface(Glob.avenir(context));
-        edtTitle.setTypeface(Glob.avenir(context));
-        edtCategory.setTypeface(Glob.avenir(context));
-        edtNotes.setTypeface(Glob.avenir(context));
-
         txtDetails = (TextView) view.findViewById(R.id.txtDetails);
-        txtDetails.setTypeface(Glob.avenir(context));
+
 
         btnSubmit = (Button) view.findViewById(R.id.btnSubmit);
-        btnSubmit.setTypeface(Glob.avenir(context));
         btnSubmit.setOnClickListener(this);
 
         btnCamera = (FloatingActionButton) view.findViewById(R.id.btnCamera);
